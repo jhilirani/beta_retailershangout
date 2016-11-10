@@ -52,8 +52,13 @@ class Index extends MY_Controller{
         $data['buyerDataArr']=$this->Faq_model->get_all('buyer');
         $data['feedback']=$this->load->view('feedback',$data,TRUE);
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
         
-        $this->load->view('home',$data);
+        if ($this->agent->is_mobile()){
+            $this->load->view('mobile_home',$data);
+        }else{
+            $this->load->view('home',$data);
+        }
     }
     
     function out_for_delivery_update(){

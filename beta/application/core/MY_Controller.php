@@ -329,7 +329,7 @@ class MY_Controller extends CI_Controller {
 
     private function get_general_meta($data){
         $data=array();
-        return $data;
+        //return $data;
         /*$this->load->model('Custom_page_seo_model');
         if($this->session->userdata('USER_SHIPPING_COUNTRY')==1){
             // for USA
@@ -341,7 +341,7 @@ class MY_Controller extends CI_Controller {
             // for Others
             $HomePageInfoArr=  $this->Custom_page_seo_model->get_details(4);
         }*/
-        $HomePageInfoArr=array();
+        $HomePageInfoArr=array('Description'=>'','Keywords'=>'','Title'=>'');
 
         $meta=$this->getDefaultMetaTag();
         $meta[]=array('name' => 'description', 'content' => $HomePageInfoArr['Description']);
