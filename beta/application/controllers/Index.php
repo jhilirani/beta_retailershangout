@@ -22,8 +22,7 @@ class Index extends MY_Controller{
     }
     
     function index(){
-        //$this->show_under_construction1();
-        //echo 'user   location : '.$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');die;
+        die('rrrr');
         $SEODataArr=array();
         if($this->is_loged_in()){
             $data=$this->_get_logedin_template($SEODataArr);
