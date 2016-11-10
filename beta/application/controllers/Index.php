@@ -22,7 +22,6 @@ class Index extends MY_Controller{
     }
     
     function index(){
-        die('rrrr');
         $SEODataArr=array();
         if($this->is_loged_in()){
             $data=$this->_get_logedin_template($SEODataArr);
@@ -37,7 +36,6 @@ class Index extends MY_Controller{
         $data['slider1']=$slider1;
         
         $slider2=$this->Banner_model->get_home_slider(2);
-        pre($slider2);die;
         $data['slider2']=$slider2;
         
         $noOfItem=  $this->Siteconfig_model->get_value_by_name('HOME_PAGE_NEW_ARRIVAL_ITEM_NO');
