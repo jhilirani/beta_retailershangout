@@ -1009,10 +1009,6 @@ class Product extends MY_Controller{
             $this->Product_model->add_image($imageBatchArr);
             //echo 'image uploaded done.<br>';
 
-            $productTagArr=array('productId'=>$productId,'tagStr'=>$tag);
-            $this->Product_model->add_product_tag($productTagArr);
-            //echo 'tag added done.<br>';
-
             $newPriceArr=array();
             foreach ($priceArr AS $k){
                 $k['productId']=$productId;
@@ -1024,7 +1020,7 @@ class Product extends MY_Controller{
             //echo 'price added done.<br>';
 
             $this->Product_model->add_product_category(array('productId'=>$productId,'categoryId'=>$categoryId));
-
+            
             //echo 'product category done.<br>';
             $this->Product_model->add_product_owner(array('productId'=>$productId,'userId'=>$this->session->userdata('FE_SESSION_VAR')));
             $this->User_model->add_tidiit_commission(array('productId'=>$productId,'sellerId'=>$this->session->userdata('FE_SESSION_VAR'),'categoryId'=>$categoryId));
@@ -1032,7 +1028,11 @@ class Product extends MY_Controller{
 
             //Add product option values
             $this->Option_model->saveOptionsValues( $this->input->post('options',TRUE)?$this->input->post('options',TRUE):[], $productId );
-
+            
+            $productTagArr=array('productId'=>$productId,'tagStr'=>$tag);
+            $this->Product_model->add_product_tag($productTagArr);
+            //echo 'tag added done.<br>';
+            
             $this->session->set_flashdata('Message','Product added successfully.');
             redirect(base_url().'product/viewlist');
         }

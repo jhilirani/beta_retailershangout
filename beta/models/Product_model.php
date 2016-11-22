@@ -398,8 +398,7 @@ class Product_model extends CI_Model {
             return $this->db->select('GROUP_CONCAT(`tag`) AS productTag',false)->from($this->_table_tag)->where('productId',$productId)->get()->row();
         }
         public function is_product_tag_added($productId,$tag){
-            $sql="SELECT * FROM product_tag WHERE `productId`='".$productId."' AND `tag`='".$tag."'";
-            $dataArr=$this->db->query($sql)->result();
+            $dataArr=$this->db->from("product_tag")->where('productId',$productId)->where('tag',$this->db->escape($tag))->get()->result();
             if(count($dataArr)>0){
                 return TRUE;
             }else{
