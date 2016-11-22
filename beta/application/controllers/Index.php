@@ -43,6 +43,7 @@ class Index extends MY_Controller{
         $data['bestSelllingItem']=$this->Product_model->get_best_selling($noOfItem);
         $data['newArrivals']=$newArrivalsData;
         $data['featuredProducts'] = $this->Product_model->get_featured_products($noOfItem);
+        $data['hotDealProducts'] = $this->Product_model->get_featured_products($noOfItem);
         $data['brandZoneArr']=$this->Brand_model->get_all();
         $data['sellerDataArr']=$this->Faq_model->get_all('seller');
         $data['buyerDataArr']=$this->Faq_model->get_all('buyer');
@@ -50,6 +51,19 @@ class Index extends MY_Controller{
         $data['feedback']=$this->load->view('feedback',$data,TRUE);
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
         $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        $data['desktop_home_hot_deal_left_side_bar']=$this->load->view('desktop_home_hot_deal_left_side_bar',$data,TRUE);
+        if (!$this->agent->is_mobile()){
+            $data['desktop_home_left_sidebar_advertise_banner']=$this->load->view('desktop_home_left_sidebar_advertise_banner',$data,TRUE);
+            $data['specialOfferProducts'] = $this->Product_model->get_featured_products($noOfItem);
+            $data['desktop_special_offer_home_page']=$this->load->view('desktop_home_left_side_special_offer',$data,TRUE);
+            $data['news_letter']=$this->load->view('news_letter',$data,TRUE);
+        }
+        
+        $data['new_product_slider_dynamic']=$this->load->view('new_product_slider_dynamic',$data,TRUE);
+        //$data['new_product_slider']=$this->load->view('new_product_slider',$data,TRUE);
+        $data['best_selling_items']=$this->load->view('best_selling_items',$data,TRUE);
+        $data['featured_products_home_page']=$this->load->view('featured_products_home_page',$data,TRUE);
+        $data['desktop_hot_deal_home_page']=$this->load->view('desktop_home_hot_deal_left_side_bar',$data,TRUE);
         
         if ($this->agent->is_mobile()){
             $this->load->view('mobile_home',$data);

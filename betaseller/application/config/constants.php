@@ -97,7 +97,7 @@ define('SiteJSURL',SiteResourcesURL.'js/');
 define('ResourcesPath',$_SERVER['DOCUMENT_ROOT'].'/'.SITE_SUB_DOMAIN.'resources/');
 //$mainHost=  explode('.',$_SERVER['HTTP_HOST']);
 //define('MainSiteURL','http://www.'.$mainHost[1].'.'.$mainHost[2]);
-define('MainSiteURL','http://betaapp.retailershangout-local.com/');
+define('MainSiteURL','http://beta.retailershangout-local.com/');
 
 
 /// product image dir

@@ -123,7 +123,7 @@ myJsMain.commonFunction = {
            }
          });
     },
-    retailersAlert:function(boxTitle,alertMessaage){
+    retailershangoutAlert:function(boxTitle,alertMessaage){
         var msg='<p><i class="fa fa-exclamation-triangle fa-2x fa-fw"></i> '+alertMessaage+'</p>';
         bootbox.alert({
             title:boxTitle,

@@ -1,7 +1,7 @@
 <?php
 $config['useragent'] = 'CodeIgniter';
 $config['protocol'] = 'sendmail';
-if($_SERVER['HTTP_HOST']=='seller.tidiit-local.com')
+if($_SERVER['HTTP_HOST']=='betaseller.retailershangout-local.com')
     $config['mailpath'] = 'D:/xampp/sendmail/sendmail.exe';
 else
     $config['mailpath'] = '/usr/sbin/sendmail';

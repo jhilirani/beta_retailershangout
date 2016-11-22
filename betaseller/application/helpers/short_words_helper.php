@@ -465,3 +465,33 @@ if( !function_exists('send_gsm_message')){
         }
     }
 }
+if( !function_exists('common_maintain_action_log')){
+    function common_maintain_action_log($msg,$heading="",$fileName=""){
+        $dir=ResourcesPath.'action_log/';
+        $CI=&get_instance();
+        $dynName=$CI->session->userdata('USER_SITE_SESSION_ID');
+        /*if($fileName==""){
+            $log_file_path=$dir.date('Y-m-d').'-payment.log';
+        }else {
+            $log_file_path=$dir.date('Y-m-d').'-'.$fileName.'.log';
+        }*/
+        $log_file_path=$dir.date('Y-m-d').'-'.$dynName.'.log';
+        //echo $log_file_path;die;
+        if (!$handle = fopen($log_file_path, 'a+')) {
+            return false;
+        }else{
+            if($heading==""):
+                $message="\n".$msg;
+            else:
+                $message="\n".'Content for the for now '.$heading.'  ===='.date('Y-m-d H:i:s').'==== '."\n";
+                $message.="\n".$msg;
+            endif;
+            
+            if (fwrite($handle, $message) === FALSE) {
+                return false;
+            }else{
+                fclose($handle);
+            }
+        }
+    }
+}
