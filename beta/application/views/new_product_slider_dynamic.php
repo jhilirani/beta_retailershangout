@@ -13,7 +13,7 @@
         <div class="tab-pane in active" id="all">
             <div class="product-slider">
                 <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
-                    <?php foreach($newArrivals AS $k){ pre($k);//die;?>
+                    <?php foreach($newArrivals AS $k){ //pre($k);//die;?>
                     <div class="item item-carousel">
                         <div class="products">
                             <div class="product">

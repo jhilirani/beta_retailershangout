@@ -39,7 +39,7 @@ class Index extends MY_Controller{
         $data['slider2']=$slider2;
         
         $noOfItem=  $this->Siteconfig_model->get_value_by_name('HOME_PAGE_NEW_ARRIVAL_ITEM_NO');
-        $newArrivalsData=  $this->Product_model->get_recent($noOfItem);pre($newArrivalsData);
+        $newArrivalsData=  $this->Product_model->get_recent($noOfItem);//pre($newArrivalsData);
         $data['bestSelllingItem']=$this->Product_model->get_best_selling($noOfItem);
         $data['newArrivals']=$newArrivalsData;
         $data['featuredProducts'] = $this->Product_model->get_featured_products($noOfItem);
