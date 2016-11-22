@@ -566,6 +566,7 @@ class Product_model extends CI_Model {
                 . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
                 . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
                 . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+        echo $sql;
         if($app==TRUE)
             return $this->db->query($sql)->result_array();
         else
