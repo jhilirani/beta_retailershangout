@@ -93,7 +93,8 @@ class Brand extends MY_Controller{
                 }
                 if($_FILES['EditbrandImage']['name']!=""){
                     $file=$_FILES['EditbrandImage'];
-                    $image=time().'.'.end(explode('.',$file['name']));
+                    $fileExtaintionArr=explode('.',$file['name']);
+                    $image=time().'.'.end($fileExtaintionArr);
                     //move_uploaded_file($file['tmp_name'],$imagePath.$image);
                     $this->brand_image_resize($file,$image);
                 }
