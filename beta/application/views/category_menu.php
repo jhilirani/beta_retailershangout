@@ -13,12 +13,12 @@
                                 <ul class="links list-unstyled">
                                     <?php foreach($subCategory AS $kk):?>
                                     <li class="dropdown menu-item">
-                                        <a href="<?php echo BASE_URL.'category/details/'.my_seo_freindly_url($kk->categoryName).'/'.  base64_encode($kk->categoryId).'~'.md5('tidiit');?>" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><?php echo $kk->categoryName;?></a>
+                                        <a href="<?php echo BASE_URL.'product/'.my_seo_freindly_url($kk->categoryName).'/?cpid='.  base64_encode($kk->categoryId*226201);?>&sort=popular" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><?php echo $kk->categoryName;?></a>
                                         <?php if(property_exists($k,'SubCategory')):
                                             if(!empty($kk->SubCategory)): $subSubCategory=$kk->SubCategory;?>
                                             <ul class="dropdown-menu">
                                                 <?php foreach($subSubCategory AS $kkk):?>
-                                                    <li><a href="<?php echo BASE_URL.'category/details/'.my_seo_freindly_url($kkk->categoryName).'/'.  base64_encode($kkk->categoryId).'~'.md5('tidiit');?>"><?php echo $kkk->categoryName;?></a></li>
+                                                    <li><a href="<?php echo BASE_URL.'product/'.my_seo_freindly_url($kkk->categoryName).'/?cpid='.  base64_encode($kkk->categoryId*226201);?>&sort=popular"><?php echo $kkk->categoryName;?></a></li>
                                                 <?php endforeach;?>
                                             </ul>
                                             <?php endif;?>
