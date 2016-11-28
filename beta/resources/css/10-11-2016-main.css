@@ -7,7 +7,7 @@ body{font-size:13px;color:#666;background-color:#fff;overflow-x:hidden;margin:0;
 ul{margin:0;padding:0}
 a{outline:none!important}
 a:hover,a:active,a:focus{text-decoration:none}
-img[src="assets/img/blank.gif"]{background:url(../img/ajax.gif) no-repeat scroll center center #fff}
+img[src="assets/img/blank.gif"]{background:url(../images/ajax.gif) no-repeat scroll center center #fff}
 .btn-upper{text-transform:uppercase}
 .m-t-30{margin-top:30px}
 .m-t-20{margin-top:20px}
@@ -418,7 +418,7 @@ header .header-nav{background:#12cca7}
 .cnt-strip .strip .green{color:#83c038}
 .cnt-strip .strip .white{color:#fff}
 .cnt-strip .strip .normal-shopping-needs{font-size:35px;font-family:'Roboto'}
-.cnt-strip .new-label{background:url(../img/xlabel.png) no-repeat scroll right top;height:72px;position:absolute;left:-1px;top:-1px;width:72px;z-index:999}
+.cnt-strip .new-label{background:url(../images/xlabel.png) no-repeat scroll right top;height:72px;position:absolute;left:-1px;top:-1px;width:72px;z-index:999}
 .cnt-strip .new-label .text{color:#fff;font-family:'Roboto',sans-serif;font-size:18px;font-weight:normal;line-height:22px;left:-13px;position:absolute;text-align:center;top:14px;-ms-transform:rotate(-43deg);-webkit-transform:rotate(-43deg);transform:rotate(-43deg);width:100%}
 .wide-banners{margin-top:-10px}
 .wide-banners.homepage-banner{margin-top:30px}

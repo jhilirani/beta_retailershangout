@@ -6,14 +6,15 @@ class Product extends MY_Controller{
         $this->load->model('Product_model');
         $this->load->model('Option_model');
         $this->load->model('Category_model');
+        $this->load->model('Brand_model');
         //parse_str($_SERVER['QUERY_STRING'],$_GET);
         $this->db->cache_off();
     }
     
     function details($str){
-        if(strtoupper(trim($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')))!='IN'){
+        /*if(strtoupper(trim($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')))!='IN'){
             redirect(BASE_URL);
-        }
+        }*/
         if($str==""){
             redirect(BASE_URL);
         }
@@ -38,6 +39,7 @@ class Product extends MY_Controller{
         }else{
             $data=$this->_get_tobe_login_template($SEODataArr);
         }
+        $noOfItem=  $this->Siteconfig_model->get_value_by_name('HOME_PAGE_NEW_ARRIVAL_ITEM_NO');
         $data['is_loged_in'] = $this->is_loged_in();
         $data['breadCrumbStr']=$this->breadCrumb($productDetailsArr[0]->categoryId, $productDetailsArr[0]->title);
         $data['productDetailsArr']=$productDetailsArr;
@@ -48,6 +50,12 @@ class Product extends MY_Controller{
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
         $data['options'] = $this->Option_model->get_product_display_option_values($productId);
         $data['topoptions'] = $this->Option_model->get_product_display_top_option_values($productId);
+        $data['hotDealProducts'] = $this->Product_model->get_featured_products($noOfItem);
+        $data['similarProducts'] = $this->Product_model->get_featured_products($noOfItem);
+        $data['brandZoneArr']=$this->Brand_model->get_all();
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        $data['product_details_hot_deal_left_side_bar']=$this->load->view('product_details_hot_deal',$data,TRUE);
+        $data['our_brand']=$this->load->view('our_brand',$data,TRUE);
         $this->load->view('details',$data);
     }
     
