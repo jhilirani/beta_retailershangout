@@ -150,6 +150,7 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
         - All rights Reserved
     </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
@@ -161,7 +162,14 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 <script src="<?php echo SiteJSURL;?>scripts.js"></script>
 <script src="<?php echo SiteJSURL;?>custom.js"></script>
-
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        var webId=myJsMain.commonFunction.js_dynamic_text(8);
+        jQuery('#webIdRegistration').val(webId);
+        jQuery('#webIdLogin').val(webId);
+        jQuery('#webIdForgotpass').val(webId);
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script src="<?php echo SiteJSURL;?>jquery.validate.min.js"></script>
 <script src="<?php echo SiteJSURL;?>common.js"></script>

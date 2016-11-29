@@ -1,12 +1,4 @@
 <?php $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN") ? '<i class="fa fa-rupee"></i>' :'KSh';?>
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        var webId=myJsMain.commonFunction.js_dynamic_text(8);
-        jQuery('#webIdRegistration').val(webId);
-        jQuery('#webIdLogin').val(webId);
-        jQuery('#webIdForgotpass').val(webId);
-    });
-</script>
 <body class="homePage">
 <!-- header -->
 <header>

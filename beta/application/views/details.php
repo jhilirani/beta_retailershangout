@@ -84,7 +84,7 @@
                                             <?php foreach ($productPriceArr As $k){?>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="selectPackege" id="" value="<?php echo $k->productPriceId;?>"> Package of <?php echo $k->qty;?> 
+                                                    <input type="radio" name="selectPackege" value="<?php echo $k->productPriceId;?>"> Package of <?php echo $k->qty;?> 
                                                     <span class="price"><i class="fa fa-inr"></i> <?php echo $k->price;?></span>
                                                 </label>
                                             </div>
@@ -94,7 +94,7 @@
                                 </div> <!-- /.row -->
                             </div> <!-- /.price-container -->
                             <div class="product-social-link m-t-20">
-                                <a href="" class="btn btn-primary btn-lg">Add to Truck</a>
+                                <a href="javascript:void(0);" class="btn btn-primary btn-lg" id="add-cart-button-id">Add to Truck</a>
                                 <div class="text-right pull-right">
                                     <span class="social-label">Share :</span>
                                     <div class="social-icons">
@@ -224,3 +224,99 @@
         <?php echo $our_brand;?>
     </div>
 </div>
+<div class="modal fade multiselect-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content orderType-content">
+      <div class="modal-body">
+      	<div class="orderType">
+         
+            <div class="input-group form-group order-labl">
+              <span class="input-group-addon">
+                <input type="radio" name="ordertype" value="group">
+              </span>
+              <label for="grp">Hangout Order</label>
+            </div><!-- /input-group -->
+            
+            <div class="input-group order-labl form-group">
+              <span class="input-group-addon">
+                <input type="radio" name="ordertype" value="single" checked>
+              </span>
+              <label for="sin">Single Order</label>
+            </div><!-- /input-group -->
+            
+            <div class="text-center">
+                <button type="button" class="btn btn-default add-to-truck-process-btn">Process</button>
+            </div>
+            <form name="add_to_truck_process_form" id="add_to_truck_process_form" method="post">
+                <input type="hidden" name="productId" id="productId" value="<?php echo $productDetailsArr[0]->productId;?>">
+                <input type="hidden" name="productPriceId" id="prorductPriceId" value="">
+            </form>
+        </div>
+                <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<?php echo $footer;?>
+<script type="text/javascript">
+$(document).ready(function(){
+    var is_loged_in = '<?=$is_loged_in?>';
+    jQuery('#add-cart-button-id').click(function(){
+        var productPriceIdData=jQuery('input:radio[name=selectPackege]:checked').val();
+        if(productPriceIdData==undefined){
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout Validate System',"Please select price for the product.");
+            $('.multiselect-modal-sm').modal('hide');
+        }else{
+            if(!is_loged_in){
+                myJsMain.commonFunction.retailershangoutAlert('Retailershangout Validate System',"Please sign in or sign up first for buy this product.");
+                $('.multiselect-modal-sm').modal('hide');
+                $( "a.signIn" ).trigger( "click" );
+                return false;
+            }
+            $('.multiselect-modal-sm').modal('show');
+        }
+    }); 
+    
+    jQuery('.add-to-truck-process-btn').click(function(){
+        var productPriceIdData=jQuery('input:radio[name=selectPackege]:checked').val();
+        jQuery('#prorductPriceId').val(productPriceIdData);
+        var order_type=jQuery('input:radio[name=ordertype]:checked').val();
+        myJsMain.commonFunction.showPleaseWait();
+        jQuery.post( myJsMain.baseURL+'shopping/check_old_order_type/', {
+                orderType: order_type
+            },
+            function(data){ 
+                myJsMain.commonFunction.hidePleaseWait();
+                if(data.contents=="1"){
+                    /// allow to process the product to cart
+                    if(order_type=='group'){
+                        jQuery('#add_to_truck_process_form').attr('action','<?php echo BASE_URL.'shopping/add-group-order/';?>');
+                    }else{
+                        jQuery('#add_to_truck_process_form').attr('action','<?php echo  BASE_URL.'shopping/add-order/';?>');
+                    }
+                    jQuery('#add_to_truck_process_form').submit();
+                }
+                /*else if(data.contents=="0"){
+                    /// show error message
+                    if(order_type=='single'){
+                        myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','Your had selected last uncompleted order is "Hangout Order".So you can not process "Single Order" Now.Set the item to your wish list and process teh order latter.',140);
+                    }else{
+                        myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','your last "Hangout Order" is yet not completd.So you can not process "Hangout Order" Now.Set the item to your wish list and process teh order latter.',140);
+                    }
+                }else if(data.contents=="2"){ 
+                    /// show error message
+                    myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','Your "Single Order" yet not completed.So you can not process "Hangout Order" Now.Set the item to your wish list and process teh order latter.',140);
+                }*/
+                else if(data.contents=="-1"){
+                    myJsMain.commonFunction.retailershangoutAlert('Retailershangout Validate System',"Please sign in or sign up first for buy this product.");
+                    $('.multiselect-modal-sm').modal('hide');
+                    $( "a.signIn" ).trigger( "click" );
+                    return false;
+                }
+                
+            }, 'json' );
+            
+        
+    });
+});
+</script>
