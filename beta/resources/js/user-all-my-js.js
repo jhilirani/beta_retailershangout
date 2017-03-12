@@ -472,6 +472,7 @@ myJsMain.my_checkout_shipping_address=function(){
         
         // this is just to show product list page
     function shippingCheckAddressFormCallback(resultData){
+        //console.log(resultData.result);
         myJsMain.commonFunction.hidePleaseWait();
         $('#shippingCheckoutAddress').prop('disabled',false);
         if(resultData.result=='bad'){
@@ -479,7 +480,7 @@ myJsMain.my_checkout_shipping_address=function(){
             $('div.js-message').html('<div class="alert alert-danger">Shipping address not updated. Please try again!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         }else if(resultData.result=='good'){
-            $('.js-right-panel').html(resultData.html);
+            //$('.js-right-panel').html(resultData.html);
             $('div.js-message').html('<div class="alert alert-success">Shipping address has been updated successfully. Please continue!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
              $('.shipping-continue').attr('data-shipping', 'true');

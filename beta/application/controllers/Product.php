@@ -12,6 +12,7 @@ class Product extends MY_Controller{
     }
     
     function details($str){
+        //die($str);
         /*if(strtoupper(trim($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')))!='IN'){
             redirect(BASE_URL);
         }*/

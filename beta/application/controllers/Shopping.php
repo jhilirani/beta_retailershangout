@@ -6,7 +6,7 @@ class Shopping extends MY_Controller{
 
     public function __construct(){
         parent::__construct();
-        session_start();
+        //session_start();
         $this->_isLoggedIn();
         $this->load->model('User_model');
         $this->load->model('Order_model');

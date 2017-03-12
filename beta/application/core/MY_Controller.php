@@ -123,7 +123,8 @@ class MY_Controller extends CI_Controller {
         $data['callForUsFree']=$this->Siteconfig_model->get_value_by_name($callUsForFree);
         $data['float_menu']=$this->get_site_categories_float_menu();
         $data['howItWorksBoxContent']=$this->Cms_model->get_content_by_id(19);
-        $data['header']=$this->load->view('header1',$data,true);
+        //$data['header']=$this->load->view('header1',$data,true);
+        $data['header']=$this->load->view('header',$data,true);
         $data['footer']=$this->load->view('footer',$data,true);
         //$data['main_menu']=$this->load->view('main_menu',$data,true);
         //$data['main_menu']=$this->get_site_categories_view();
