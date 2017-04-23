@@ -1,14 +1,23 @@
 <?php echo $html_heading; echo $header;?>
-<article>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 productInner">
-        <div class="page_content">
-            <div class="row">
-                <div class="col-md-6">
-                    <?php echo $userMenu;?>
+<div class="breadcrumb">
+    <div class="container">
+        <ul class="filters visible-xs visible-sm pull-left">
+            <li class="filterBtn"><span><i class="fa fa-bars"></i> Menu</span></li>
+        </ul>
+    </div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+<div class="bodyContent">
+    <div class='container'>
+        <div class='row'>
+            <div class="col-xs-12 col-sm-12 col-md-3 sidebar filters">
+                <span class="cross visible-xs visible-sm">&times;</span>
+                <div class="side-menu animateDropdown">
+                    <nav class="yamm megamenu-horizontal" role="navigation">
+                        <?php echo $userMenu;?>
+                    </nav>
                 </div>
-                <div class="col-md-6 wht_bg">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 wht_bg">
                     <!-- Tab panes -->
                     <div class="tab_dashbord">
                     	<div class="active row">
@@ -28,10 +37,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
-      </div>
     </div>
-  </div>
-</article>
+</div>    
 <?php echo $footer;?>

@@ -1,10 +1,10 @@
 <?php echo $html_heading; echo $header; $currencySymbol='<i class="fa fa-rupee"></i>';//($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN") ? '<i class="fa fa-rupee"></i>' :'KSh';
 ?>
 <script src="<?php echo SiteJSURL;?>user-all-my-js.js" type="text/javascript"></script>
-<!--<div class="bodyContent" id="checkoutPage">
-    
-    </div> <!-- /.container -
-</div>-->
+<?php
+$CI =& get_instance();
+$CI->load->model('Product_model');
+?>
 <div class="bodyContent" id="checkoutPage">
     <div class="container checkout"> <!-- container -->
         <div class="row">
@@ -30,56 +30,64 @@
                                         <td class="text-center"><h4 class="h4">Quantity</h4></td>
                                         <td class="text-right"><h4 class="h4">Subtotal</h4></td>
                                         <td>&nbsp;</td>
-                                    </tr> <!-- /.row -->
                                     <?php
                                     $total = 0;
-                                    $tax=0;
-                                    $disc='';
-                                    foreach ($allItemArr as $k): //pre($k);
-                                        $total += $k['subTotalAmount'];
-                                        $tax +=$k['taxAmount'];
-                                        $disc +=$k['discountAmount'];
-                                        //$productDetailsArr = $this->Product_model->details($item['options']['productId']);
-                                        //$productImageArr = $this->Product_model->get_products_images($item['options']['productId']);
-                                        ?>
-                                    <tr id="<?=$k['orderId']?>"> <!-- row -->
+                                    //foreach ($cart as $item):
+                                        if ($order):
+                                            $total += $order->orderAmount;
+                                            $productDetailsArr = $this->Product_model->details($order->productId);
+                                            $productImageArr = $this->Product_model->get_products_images($order->productId);
+                                            ?>
+                                    <tr id="<?=$order->orderId?>"> <!-- row -->
                                         <td class="name" data-th="Product">
                                             <div class="media">
                                                 <a class="pull-left" href="#">
-                                                    <img class="media-object img-responsive" src="<?=PRODUCT_DEAILS_SMALL.$k['pimage']?>" alt="<?=$k['productTitle']?>" height="80">
+                                                    <img class="media-object img-responsive" src="<?=PRODUCT_DEAILS_SMALL.$productImageArr[0]->image?>" alt="<?= $productDetailsArr[0]->title ?>" height="80">
                                                 </a>
                                                 <div class="media-body">
-                                                    <h4 class="media-heading"><?= $k['productTitle'] ?></h4>
+                                                    <h4 class="media-heading"><?= $productDetailsArr[0]->title ?></h4>
                                                     <span class="text-mute">Sub Heading</span>
-                                                    <div class="clearfix m-t-15"><span class="pointer text-pri showPromocodeSection" data-eleid="<?=$k['orderId']?>" data-toggle="collapse" data-target="#coupon<?=$k['orderId']?>">Have a promo code?</span></div>
+                                                    <div class="clearfix m-t-15"><span class="pointer text-pri showPromocodeSection" data-eleid="<?=$order->orderId?>" data-toggle="collapse" data-target="#coupon<?=$order->orderId?>">Have a promo code?</span></div>
                                                 </div>
                                             </div>
-                                            <div id="coupon<?=$k['orderId']?>" class="collapse ApplyCouponActionSection<?=$k['orderId']?>" <?php if($k['discountAmount']<1){?>style="display: none;"<?php }?>>
+                                            <div id="coupon<?=$order->orderId?>" class="collapse ApplyCouponActionSection<?=$order->orderId?>" <?php if($order->discountAmount<1){?>style="display: none;"<?php }?>>
                                                 <div class="input-group m-t-15" style="max-width:250px;">
-                                                    <input type="text" id="order-coupon<?=$k['orderId']?>" name="coupon" style="<?php if($k['discountAmount']<1){?>display: none;<?php }?>" class="form-control" placeholder="Enter coupon code">
+                                                    <input type="text" id="order-coupon<?=$order->orderId?>" name="coupon" style="<?php if($order->discountAmount<1){?>display: none;<?php }?>" class="form-control" placeholder="Enter coupon code">
                                                     <span class="input-group-btn">
-                                                        <button class="btn btn-primary js-apply-coupon" alt="<?=$k['orderId']?>" type="button">Apply</button>
+                                                        <button class="btn btn-primary js-apply-coupon" alt="<?=$order->orderId?>" type="button">Apply</button>
                                                     </span>
-                                                    <span class="applyCouponElemtnForRemove<?=$k['orderId']?>">
-                                                        <?php if($k['discountAmount']>0){?>
-                                                        <button type="button" class="btn btn-info btn-xs remove-coupon-from-order-<?=$k["orderId"]?>" style="width:75px"><i class="fa fa-tags"></i>COUPON</button><button type="button" class="btn btn-danger btn-xs remove-coupon-from-order remove-coupon-from-order-<?=$k["orderId"]?>" data-id="<?=$k["orderId"]?>"><i class="fa fa-times-circle"></i></button>
+                                                    <span class="applyCouponElemtnForRemove<?=$order->orderId?>">
+                                                        <?php if($order->discountAmount>0){?>
+                                                        <button type="button" class="btn btn-info btn-xs remove-coupon-from-order-<?=$order->orderId?>" style="width:75px"><i class="fa fa-tags"></i>COUPON</button><button type="button" class="btn btn-danger btn-xs remove-coupon-from-order remove-coupon-from-order-<?=$order->orderId?>" data-id="<?=$order->orderId?>"><i class="fa fa-times-circle"></i></button>
                                                         <?php }?>
                                                     </span>
                                                 </div><!-- /input-group -->
                                             </div>
                                         </td>
                                         <td class="ps-cell text-center price" data-th="Price">
-                                            <span class="selling"><?php echo $currencySymbol;?> <?= $k['subTotalAmount']/$k['qty'] ?></span>
+                                             <?php
+                                                            $single_price = ($order->subTotalAmount/$order->productQty);
+                                                            $price = number_format($single_price, 2, '.', '');?>
+                                            <span class="selling"><?php echo $currencySymbol;?> <?= $price ?></span>
                                         </td>
-                                        <td class="ps-cell qty" data-th="Quantity"><h4 class="h4"><?= $k['qty'] ?></h4></td>
+                                        <td class="ps-cell qty" data-th="Quantity"><h4 class="h4"><?=$order->productQty?></h4></td>
                                         <td class="ps-cell total" data-th="Subtotal">
-                                            <?php echo $currencySymbol;?> <?= number_format($k['subTotalAmount']) ?>.00                            
+                                            <?php echo $currencySymbol;?> <?= number_format($order->subTotalAmount) ?>.00                            
                                         </td>
-                                        <td class="text-center actions"><a href="" class="remove js-single-cart-remove" data-cartid="<?=$k['orderId']?>"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="text-center actions"><a href="" class="remove js-single-cart-remove" data-cartid="<?=$order->orderId?>"><i class="fa fa-trash-o"></i></a></td>
                                     </tr> <!-- /.row -->
                                     <?php
-                                    endforeach;
+                                    endif;      
+                                    //endforeach;
                                     ?>
+                                    <?php 
+if($coupon):
+    $total -= $coupon->amount;
+    $disc = $coupon->amount;
+else:
+    $disc = '0.00';
+endif;?>                                                
+          
                                     <tr> <!-- row -->
                                         <td colspan="3" class="text-right sub-total" <?php if($disc==""):?>style="display: none;"<?php endif;?>>Discount</td>
                                         <td class="sub-total"><?php echo $currencySymbol;?> <?php 
@@ -95,13 +103,13 @@
 
                                     <tr> <!-- row -->
                                         <td colspan="3" class="text-right sub-total">Service Tax (<!--15%-->)</td>
-                                        <td class="sub-total"><?php echo $currencySymbol;?> <?= number_format(round($tax,0,PHP_ROUND_HALF_UP),2)?><</td>
+                                        <td class="sub-total"><?php echo $currencySymbol;?> <?=$order->taxAmount?></td>
                                         <td>&nbsp;</td>
                                     </tr> <!-- /.row -->
 
                                     <tr> <!-- row -->
                                         <td colspan="3" class="text-right sub-total">Total</td>
-                                        <td class="sub-total"><?php echo $currencySymbol;?> <?=number_format(round(($total-$disc)+$tax,0,PHP_ROUND_HALF_UP),2)?></td>
+                                        <td class="sub-total"><?php echo $currencySymbol;?> <?=$total?></td>
                                         <td>&nbsp;</td>
                                     </tr> <!-- /.row -->
                                 </table> <!-- /.table -->
@@ -219,7 +227,7 @@
                     <div class="tab-pane fade sign-in-up" id="payment"> <!-- tab-pane -->
                         <h3 class="pageTitle">Select Payment Option</h3><hr class="hr hr-primary">
                         <div class="panel panel-body">
-                            <form name="single_order_payment_option_pr" id="single_order_payment_option_pr" method="post" action="<?php echo BASE_URL.'shopping/ajax_process_single_payment_start';?>">
+                            <form name="group_order_payment_option" id="group_order_payment_option" method="post" action="<?php echo BASE_URL.'shopping/ajax-process-group-payment';?>">
                                 <?php foreach($paymentGatewayData AS $k):?>
                                 <div class="form-group">
                                     <div class="radio"><label><input type="radio" name="paymentoption" value="<?php echo $k->gatewayCode;?>"><?php echo $k->gatewayTitle;?></label></div>
@@ -229,6 +237,7 @@
                                     <div class="radio"><label><input type="radio" name="paymentMethod" value="sod"> Settlement on Delivery</label></div>
                                 </div>
                                 <div class="m-t-15"><button type="submit" class="btn btn-primary">Proceed to Pay</button></div>
+                                <input type="hidden" name="orderId" value="<?=$order->orderId?>"/>
                             </form>
                         </div>
                         <div class="js-payment-message" role="alert" style="display: none;"></div>                                        
@@ -237,18 +246,11 @@
                 </div> <!-- /.tab-content -->
             </div>
         </div>
-    </div> <!-- /.container -->
-</div>
+    </div>
+</div>    
 <?php echo $footer;?>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery('.showPromocodeSection').click(function(){
-            var eleID=jQuery(this).attr('data-eleid');
-            
-            jQuery('#order-coupon'+eleID).show();
-            jQuery('.ApplyCouponActionSection'+eleID).show();
-            jQuery(this).html('');
-        });
     myJsMain.my_checkout_shipping_address();
     jQuery('#countryId').on('change',function(){
            if(jQuery(this).val()==""){
@@ -327,21 +329,18 @@
       
       jQuery("body").delegate('a.js-apply-coupon', "click", function(e){
             e.preventDefault();
-            myJsMain.commonFunction.showPleaseWait();
-            var orderId=jQuery(this).attr('alt');
-            var obj = $('input[id="order-coupon'+orderId+'"]');            
+            var obj = $('input[id="order-coupon"]');            
             var cpn = obj.val();
             if(!cpn){ 
-                myJsMain.commonFunction.hidePleaseWait();
                 $('div.js-message').html('<div class="alert alert-danger">Please enter your promo code!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
             } else {                
-                $.post( myJsMain.baseURL+'shopping/ajax_single_order_set_promo/', {
+                myJsMain.commonFunction.showPleaseWait();
+                $.post( myJsMain.baseURL+'shopping/ajax_order_set_promo/', {
                     orderId: obj.attr('data-order'),
-                    promocode: cpn,
-                    orderId: orderId
+                    promocode: cpn
                 },
-                function(data){ 
+                function(data){
                     myJsMain.commonFunction.hidePleaseWait();
                     if(data.error){
                         $('div.js-message').html('<div class="alert alert-danger">'+data.error+'</div>');
@@ -355,11 +354,8 @@
                     
                     if(data.content){
                         $('tr.js-show-disc').show();
-                        $('td.js-show-disc-amt').html('<strong><?php echo $currencySymbol;?> '+data.content.couponAmount+'</strong>');
-                        $('.js-tax-total').html('<strong><?php echo $currencySymbol;?> '+data.content.tax+'</strong>');
-                        $('.js-sub-total').html('<strong><?php echo $currencySymbol;?> '+data.content.grandTotal+'</strong>');
-                        var htmlCoupon = "<button type=\"button\" class=\"btn btn-info btn-xs remove-coupon-from-order-"+orderId+"\" style=\"width:75px\"><i class=\"fa fa-tags\"></i>"+cpn+"</button><button type=\"button\" class=\"btn btn-danger btn-xs remove-coupon-from-order remove-coupon-from-order-"+orderId+"\" data-id=\""+orderId+"\"><i class=\"fa fa-times-circle\"></i></button>";
-                        jQuery('.applyCouponElemtnForRemove'+orderId).html(htmlCoupon);
+                        $('td.js-show-disc-amt').text(data.content.amount);
+                        $('.js-sub-total').html('<strong>Total $'+data.content.orderAmount+'</strong>');
                         obj.val('');
                     }
                     
@@ -367,24 +363,6 @@
             }
         });
         
-        jQuery("body").delegate('.remove-coupon-from-order', "click", function(e){
-            orderId= jQuery(this).attr('data-id');
-            e.preventDefault();
-            myJsMain.commonFunction.showPleaseWait();
-            $.post( myJsMain.baseURL+'shopping/ajax_single_order_remove_promo/', {
-                    orderId: orderId
-                },
-                function(data){ 
-                    myJsMain.commonFunction.hidePleaseWait();
-                    if(data.msg=='ok'){
-                        jQuery('.applyCouponElemtnForRemove'+orderId).html('');
-                        location.href=myJsMain.baseURL+'shopping/single-checkout/';
-                    }else{
-                            $('div.js-message').html('<div class="alert alert-danger">Unknown error arises to remove the Coupon Code.</div>');
-                            $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
-                    }
-                }, 'json' ); 
-        });
         
         jQuery("body").delegate('a.js-proceed-payment', "click", function(e){
             e.preventDefault();
@@ -392,42 +370,39 @@
         });
         
         
-        jQuery("body").delegate('.js-single-cart-remove', "click", function(e){
+        jQuery("body").delegate('.js-group-cart-remove', "click", function(e){
             e.preventDefault();
-                         
-            var cartId = jQuery(this).attr('data-cartid');
-            jQuery.post( myJsMain.baseURL+'shopping/remove-single-cart/', {
+            var cartId = jQuery(this).attr('data-orderid');
+            jQuery.post( myJsMain.baseURL+'shopping/remove_group_cart/', {
                 cartId: cartId
             },
             function(data){ 
                 if(data.contents){
                     //jQuery('tr#'+cartId).remove();
                     var item = "(<?=count($this->cart->contents())-1?> Item<?php if(count($this->cart->contents())-1 > 1): echo 's';endif;?>)";
-                    jQuery('span.js-cart-item').text(item);                    
-                    jQuery('tr#'+cartId).remove();  
-                    //if(data.reload){
-                       // window.location.href = myJsMain.baseURL+'shopping/single-checkout/';
-                   // } else {
-                        window.location.href = myJsMain.baseURL+'shopping/my-cart/';
-                   // }
+                    jQuery('span.js-cart-item').text(item);
+                    jQuery('.'+cartId).hide();
+                    window.location.href = myJsMain.baseURL+'shopping/my-cart/';
                 }
             }, 'json' );
         }); 
         
         jQuery("body").delegate('a.js-order-payment', "click", function(e){
             myJsMain.commonFunction.showPleaseWait();
-            $('#single_order_payment_option')[0].submit();
+            $('#group_order_payment_option')[0].submit();
             /*e.preventDefault();
+            
+            var orderId = jQuery(this).attr('data-orderid');
             var cartId = jQuery(this).attr('data-cartid');
-            jQuery.post( myJsMain.baseURL+'shopping/ajax_process_single_payment/', {
+            jQuery.post( myJsMain.baseURL+'shopping/ajax_process_group_payment/', {
+                orderId: orderId,
                 cartId: cartId
             },
-            function(data){
-                myJsMain.commonFunction.hidePleaseWait();
-                if(data.url){
+            function(data){ 
+                if(data.url){                    
                     window.location.href = data.url;
                 }
-
+                myJsMain.commonFunction.hidePleaseWait();
                 if(data.error){
                     $('div.js-payment-message').html(data.error);
                     $('div.js-payment-message').fadeIn(300,function() { setTimeout( '$("div.js-payment-message").fadeOut(300)', 15000 ); });

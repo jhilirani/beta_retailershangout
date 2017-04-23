@@ -28,7 +28,7 @@
     <?php echo $featured_products_home_page;?>
     <div class="sidebar">
         <div class="side-menu animateDropdown">
-            <?php //echo $desktop_hot_deal_home_page; ?>
+            <?php echo $desktop_hot_deal_home_page; ?>
         </div><!-- /.sidemenu-holder -->
     </div><!-- /.sidebar -->
     <div id="brands-carousel" class="logo-slider">
