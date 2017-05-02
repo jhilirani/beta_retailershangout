@@ -73,7 +73,7 @@ $currencySymbol= '<i class="fa fa-rupee"></i>';
                                                 </tr> <!-- /.row -->
                                                 <tr> <!-- row -->
                                                     <td><?=isset($orderinfo['shipping']->firstName)?$orderinfo['shipping']->firstName:''?> <?=isset($orderinfo['shipping']->lastName)?$orderinfo['shipping']->lastName:''?></td>
-                                                    <td class="text-left">?=isset($orderinfo['shipping']->address)?$orderinfo['shipping']->address:''?><br>
+                                                    <td class="text-left"><?=isset($orderinfo['shipping']->address)?$orderinfo['shipping']->address:''?><br>
                                                             <?=isset($orderinfo['shipping']->locality)?$orderinfo['shipping']->locality:''?><br>
                                                         City: <?=isset($orderinfo['shipping']->city)?$orderinfo['shipping']->city:''?><br>
                                                         State :<?=isset($orderinfo['shipping']->stateName)?$orderinfo['shipping']->stateName:''?><br>

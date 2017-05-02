@@ -1269,11 +1269,11 @@ class Product extends MY_Controller{
     }
     
     function get_tidiit_commission($productId){
-        $rs=$this->db->get_where('tidiit_comission',array('productId'=>$productId))->result(); return $rs[0]->commissionPercentage;
+        $rs=$this->db->get_where('tidiit_commission',array('productId'=>$productId))->result(); return $rs[0]->commissionPercentage;
     }
     
     function is_tidiit_commission_updated($productId){
-        $rs=$this->db->get_where('tidiit_comission',array('productId'=>$productId))->result(); 
+        $rs=$this->db->get_where('tidiit_commission',array('productId'=>$productId))->result(); 
         if(count($rs)>0){
             return TRUE;
         }else{
