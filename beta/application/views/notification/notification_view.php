@@ -8,10 +8,11 @@ $CI =& get_instance();
     	<div class="modal-header">   
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="cart-heading clearfix">
-                <h3><?=$n->nTitle?> <span class="label label-success"><?=$n->nType;?></span></h3>
+                <h3>Hanagout order inviation</h3>
             </div>
           </div>   
         <div class="modal-body">
+            <h3><?=$n->nTitle?> <span class="label label-success"><?=$n->nType;?></span></h3>
             <?=$n->nMessage?>
         </div>
         <div class="modal-footer">

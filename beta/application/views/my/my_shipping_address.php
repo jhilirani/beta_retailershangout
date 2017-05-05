@@ -48,6 +48,7 @@
                                     <input type="text" name="address" class="form-control" value="<?php echo $userShippingDataDetails[0]->address;?>" required>
                                 </div> <!-- /.name -->
                             </div>
+                            <input type="hidden" name="countryId" value="99">
                             <div class="col-sm-4">
                                 <div class="form-group"> <!-- name -->
                                     <label>City</label>

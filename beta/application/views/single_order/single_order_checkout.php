@@ -321,7 +321,7 @@
             e.target // newly activated tab
             e.relatedTarget // previous active tab
             if(!$(e.relatedTarget).attr('data-shipping')){
-                $('.nav-tabs a[href="#Confirm"]').trigger( "click" );
+                $('.nav-tabs a[href="#billing"]').trigger( "click" );
             }
       });
       
@@ -388,7 +388,7 @@
         
         jQuery("body").delegate('a.js-proceed-payment', "click", function(e){
             e.preventDefault();
-            $('.nav-tabs a[href="#Payment"]').trigger( "click" ); 
+            $('.nav-tabs a[href="#payment"]').trigger( "click" ); 
         });
         
         

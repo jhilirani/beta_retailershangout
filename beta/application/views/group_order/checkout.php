@@ -366,7 +366,7 @@ endif;?>
         
         jQuery("body").delegate('a.js-proceed-payment', "click", function(e){
             e.preventDefault();
-            $('.nav-tabs a[href="#Payment"]').trigger( "click" ); 
+            $('.nav-tabs a[href="#payment"]').trigger( "click" ); 
         });
         
         

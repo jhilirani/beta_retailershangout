@@ -176,3 +176,57 @@
     </div>
 </div>
 <?php echo $footer;?>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        var message='<?php  echo $this->session->flashdata('message');?>';
+        if(message!=''){
+            $('div.js-message').html('<div class="alert alert-danger">'+message+'</div>');
+            $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
+        }
+        jQuery("body").delegate('.js-group-cart-remove', "click", function(e){
+            e.preventDefault();
+            myJsMain.commonFunction.showPleaseWait();             
+            var cartId = jQuery(this).attr('data-cartid');
+            var orderId = jQuery(this).attr('data-orderid');
+            jQuery.post( myJsMain.baseURL+'shopping/remove_group_cart/', {
+                cartId: cartId,
+                orderId: orderId
+            },
+            function(data){ 
+                myJsMain.commonFunction.hidePleaseWait();
+                if(data.contents){
+                    jQuery('tr#'+cartId).remove();
+                    var item = "(<?=count($allItemArr)-1?> Item<?php if(count($allItemArr)-1 > 1): echo 's';endif;?>)";
+                    jQuery('span.js-cart-item').text(item);
+                    jQuery('#shoppingcart').modal('hide');
+                    //jQuery('.showCartDetails').trigger( "click" ); 
+                    window.location.href = myJsMain.baseURL+'shopping/my-cart/';
+                }
+            }, 'json' );
+        }); 
+        
+        jQuery("body").delegate('.js-single-cart-remove', "click", function(e){
+            e.preventDefault();
+                         
+            var cartId = jQuery(this).attr('data-cartid');
+            jQuery.post( myJsMain.baseURL+'shopping/remove-single-cart/', {
+                cartId: cartId
+            },
+            function(data){ 
+                if(data.contents){
+                    jQuery('tr#'+cartId).remove();
+                    /*if(data.reload){
+                        window.location.href = myJsMain.baseURL;
+                    } else {
+                        var item = "(<?php //count($this->cart->contents())-1?> Item<?php //if(count($this->cart->contents())-1 > 1): echo 's';endif;?>)";
+                        jQuery('span.js-cart-item').text(item);
+                        jQuery('#shoppingcart').modal('hide');
+                        jQuery('.showCartDetails').trigger( "click" ); 
+                    }*/
+                    window.location.href = myJsMain.baseURL+'shopping/my-cart/';
+                }
+            }, 'json' );
+        }); 
+        
+    });
+</script>
