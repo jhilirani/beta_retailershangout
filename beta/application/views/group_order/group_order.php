@@ -253,7 +253,7 @@
         }); 
         
         jQuery("body").delegate('input[class="js-select-group"]', "click", function(e){
-            var gid = $(this).val();alert(gid); 
+            var gid = $(this).val(); //alert(gid); 
             $('input[id="js-order-info"]').attr('data-groupid', gid);
             $('input[id="js-order-info"]').trigger( "click" );            
         });   
