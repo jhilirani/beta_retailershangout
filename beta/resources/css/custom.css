@@ -12,7 +12,7 @@ label.error{display: inline-block; clear: both; float: left;}
 .close {color: #556AA4; opacity: 1;}
 .close:hover{color: #000; opacity: 1;}
 
-.modal-header {font-weight: 900;padding:9px 15px;border-bottom:1px solid #eee;color: #FFF;background-color: #556AA4;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;} 
+/*.modal-header {font-weight: 900;padding:9px 15px;border-bottom:1px solid #eee;color: #FFF;background-color: #556AA4;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;} */
 .modal-header1{font-weight: 900;padding:9px 15px;border-bottom:1px solid #eee;color: #000 !important;background-color: #FFFFFF !important;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;-moz-border-radius-topleft: 5px;-moz-border-radius-topright: 5px;border-top-left-radius: 5px;border-top-right-radius: 5px;} 
 .requiredLabel:after{color: #d00;content: "*";position: absolute;margin-left: 8px;top:7px;color:#d00;}
 .egiftsportal-feedback-right-floating-btn{position: fixed;top: 0;bottom: 0;height: 3.5em;margin: auto;right: 0;padding:0px 30px;

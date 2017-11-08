@@ -28,7 +28,7 @@ myJsMain.login=function(){
         //$('#fade_background').fadeOut();
         //$('#LoadingDiv').fadeOut();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
             window.location.href = resultData.url;
             //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.url,200);
