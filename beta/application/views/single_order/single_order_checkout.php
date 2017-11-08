@@ -20,7 +20,7 @@
             <div class="col-md-9 col-sm-12">
                 <div class="tab-content"> <!-- tab-content -->
                     <div class="tab-pane fade" id="checkout"> <!-- tab-pane -->
-                        <form action="">
+                        <form action="javascript:void(0);">
                             <h4 class="pageTitle">Single Order</h4><hr class="hr hr-primary">
                             <div class="table-responsive">
                                 <table class="table table-striped"> <!-- table -->
@@ -108,7 +108,9 @@
                             </div>
                             <div class="clearfix">
                                 <a href="" class="btn btn-primary">Continue Shopping</a>
-                                <button type="submit" class="btn btn-primary pull-right js-proceed-payment">Proceed to Payment</button>
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-primary pull-righ js-proceed-payment">Proceed to Payment</button>
+                                </div>
                             </div>
                         </form>
                         <div class="js-message" role="alert" style="display: none;"></div>                                        
@@ -158,6 +160,7 @@
                                                 <?php } ?> 
                                             </select>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.city -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -180,6 +183,7 @@
                                                 </select>
                                             <?php } ?>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.city -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -199,6 +203,7 @@
                                                 </select>
                                             <?php } ?>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.name -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -207,6 +212,7 @@
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="landmark" name="landmark" placeholder="" value="<?= $userShippingDataDetails->landmark; ?>">
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 text-right">
@@ -226,7 +232,7 @@
                                 </div>
                                 <?php endforeach;?>
                                 <div class="form-group">
-                                    <div class="radio"><label><input type="radio" name="paymentMethod" value="sod"> Settlement on Delivery</label></div>
+                                    <div class="radio"><label><input type="radio" name="paymentoption" value="sod"> Settlement on Delivery</label></div>
                                 </div>
                                 <div class="m-t-15"><button type="submit" class="btn btn-primary">Proceed to Pay</button></div>
                             </form>
@@ -313,7 +319,7 @@
                 $('div.js-message').html('<div class="alert alert-danger">Please update shipping address!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
             } else {                
-                $('.nav-tabs a[href="#Review"]').trigger( "click" ); 
+                $('.nav-tabs a[href="#checkout"]').trigger( "click" ); 
             }
         });
         
@@ -386,7 +392,8 @@
                 }, 'json' ); 
         });
         
-        jQuery("body").delegate('a.js-proceed-payment', "click", function(e){
+        jQuery("body").delegate('.js-proceed-payment', "click", function(e){
+            //console.log("goting for payment tab");
             e.preventDefault();
             $('.nav-tabs a[href="#payment"]').trigger( "click" ); 
         });

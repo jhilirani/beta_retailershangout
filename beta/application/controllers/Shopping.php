@@ -258,7 +258,7 @@ class Shopping extends MY_Controller{
         $orderId = $this->input->post('orderId',TRUE);
         $cartId = $orderId;
         $paymentOption = $this->input->post('paymentoption',TRUE);
-        
+        //pre($_POST);die;
         if($paymentOption==""){
             $this->session->set_flashdata("message","Invalid payment option selected!");
             redirect(BASE_URL.'shopping/my-cart');
@@ -1221,6 +1221,7 @@ class Shopping extends MY_Controller{
             redirect(BASE_URL.'shopping/my-cart');
         }
         
+        pre("going next at ".time());
         
         $user = $this->_get_current_user_details();
         /*$sms_data=array('nMessage'=>'comming to ajax_process_single_payment_start FUN at '.time().' $paymentType '.$paymentType.' at line number 1213',

@@ -166,6 +166,7 @@ endif;?>
                                                 <?php } ?> 
                                             </select>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.city -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -188,6 +189,7 @@ endif;?>
                                                 </select>
                                             <?php } ?>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.city -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -207,6 +209,7 @@ endif;?>
                                                 </select>
                                             <?php } ?>
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div> <!-- /.name -->
                                 </div>
                                 <div class="col-md-6 col-sm-6">
@@ -215,6 +218,7 @@ endif;?>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="landmark" name="landmark" placeholder="" value="<?= $userShippingDataDetails->landmark; ?>">
                                         </div>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 text-right">
@@ -234,7 +238,7 @@ endif;?>
                                 </div>
                                 <?php endforeach;?>
                                 <div class="form-group">
-                                    <div class="radio"><label><input type="radio" name="paymentMethod" value="sod"> Settlement on Delivery</label></div>
+                                    <div class="radio"><label><input type="radio" name="paymentoption" value="sod"> Settlement on Delivery</label></div>
                                 </div>
                                 <div class="m-t-15"><button type="submit" class="btn btn-primary">Proceed to Pay</button></div>
                                 <input type="hidden" name="orderId" value="<?=$order->orderId?>"/>
@@ -364,7 +368,7 @@ endif;?>
         });
         
         
-        jQuery("body").delegate('a.js-proceed-payment', "click", function(e){
+        jQuery("body").delegate('.js-proceed-payment', "click", function(e){
             e.preventDefault();
             $('.nav-tabs a[href="#payment"]').trigger( "click" ); 
         });
