@@ -28,7 +28,7 @@ myJsMain.login=function(){
         //$('#fade_background').fadeOut();
         //$('#LoadingDiv').fadeOut();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg);
         }else if(resultData.result=='good'){
             window.location.href = resultData.url;
             //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.url,200);
@@ -99,7 +99,7 @@ myJsMain.registration=function(){
         myJsMain.commonFunction.hidePleaseWait();
         $('#SignIn').prop('disabled',false);
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg);
         }else if(resultData.result=='good'){
             check_profile_completion_for_start_order(resultData.profile_common_message);
             window.location.href = resultData.url;
@@ -131,7 +131,7 @@ myJsMain.forgot_password=function(){
     function forgotPasswordFormCallback(resultData){
         $('#forgotPasswrod').prop('disabled',false);
         myJsMain.commonFunction.hidePleaseWait();
-        myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+        myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg);
     }
     
     
@@ -140,7 +140,7 @@ myJsMain.forgot_password=function(){
 
 function check_profile_completion_for_start_order(msg){
     if(msg!=""){
-        myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',msg,200);
+        myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',msg);
     }else{
         return false
     }

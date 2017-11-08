@@ -191,12 +191,12 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
                     <form action="#" method="post" name="retailershangout_user_login_form" id="retailershangout_user_login_form" class="contact_form">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" class="form-control" placeholder="Enter email">
+                            <input type="text" name="userName" id="userName" class="form-control" placeholder="Enter email">
                         </div>
 
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="passowrd" class="form-control" placeholder="****">
+                            <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="****">
                             <div class="text-right font-sm"><span class="pointer" data-toggle="collapse" data-target="#forgorPassword" aria-expanded="false">Forgot Password?</span></div>
                         </div>
 
@@ -212,7 +212,7 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
                     <form action="">
                         <div class="form-group">
                             <label>Enter Email</label>
-                            <input type="text" class="form-control" placeholder="Enter email">
+                            <input type="text" name="userForgotPasswordEmail" id="userForgotPasswordEmail" class="form-control" placeholder="Enter email">
                         </div>
 
                         <div class="form-group">
@@ -244,24 +244,24 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
                         <input type="hidden" name="webIdRegistration" id="webIdRegistration" value="">         
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" class="form-control" placeholder="Enter first name">
+                            <input type="text" name="firstName" id="firstName" class="form-control" required="required" placeholder="Enter first name">
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" placeholder="Enter last name">
+                            <input type="text" name="lastName" id="lastName" class="form-control" required="required" placeholder="Enter last name">
                         </div>
 
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" class="form-control" placeholder="Enter email">
+                            <input type="email" name="email" id="email" class="form-control" required="required" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="****">
+                            <input type="password" name="password" id="password" required="required" class="form-control" placeholder="****">
                         </div>
                         <div class="form-group">
                             <label>Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="****">
+                            <input type="password" name="confirmPassword" required="required" id="confirmPassword" class="form-control" placeholder="****">
                         </div>
 
                         <div class="form-group">

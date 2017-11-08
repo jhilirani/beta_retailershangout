@@ -17,7 +17,7 @@
                     <?php if(!$this->session->userdata('FE_SESSION_VAR')):?>
                     <a href="" data-toggle="modal" data-target="#loginModal"><i class="fa fa-sign-in"></i> Sign In</a>
                     <?php else:?>
-                    <a href="<?php BASE_URL.'myaccount';?>"><i class="fa fa-user"></i> Hi <?php echo $this->session->userdata('FE_SESSION_VAR_FNAME');?></a>
+                    <a href="<?php echo BASE_URL.'myaccount';?>"><i class="fa fa-user"></i> Hi <?php echo $this->session->userdata('FE_SESSION_VAR_FNAME');?></a>
                     <?php endif;?>
                 </li>
                 <li>

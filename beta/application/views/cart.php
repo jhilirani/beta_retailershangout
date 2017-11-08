@@ -32,7 +32,7 @@
             <div class="modal-body">
                 <div class="checkout"> <!-- tab-pane -->
                     <?php if ($is_single): ?>
-                    <form action="checkout.php">
+                    <form action="javascript:void();">
                         <h4 class="pageTitle">Single Order</h4>
                         <div class="table-responsive">
                             <table class="table table-striped" id="cart"> <!-- table -->
@@ -98,7 +98,9 @@
                             </table> <!-- /.table -->
                         </div>
                         <div class="clearfix">
-                            <button type="submit" class="btn btn-primary pull-right">Proceed to Checkout</button>
+                            <button type="button" class="btn btn-primary pull-right" <?php if ($subtotal > 1): ?> onclick="location.href='<?= BASE_URL; ?>shopping/single-checkout/';"<?php endif; ?>>
+                                Proceed to Checkout
+                            </button>
                         </div>
                     </form>
                     <?php endif; ?>
@@ -106,7 +108,7 @@
                 $subtotal = 0;
                 $tax = 0;
                 if ($is_group): ?>
-                    <form action="checkout.php" class="m-t-20">
+                    <form action="javascript:void();" class="m-t-20">
                         <h4 class="pageTitle">Hangout Order</h4>
                         <div class="table-responsive">
                             <table class="table table-striped"> <!-- table -->

@@ -14,7 +14,7 @@ class Category extends MY_Controller{
         }
         //echo '<pre>';
         //$cats = $this->Category_model->get_site_categories();
-        //print_r($cats);die;
+        print_r($cats);die;
         $idStrArr=  explode('~', $idStr);
         if(count($idStrArr)>0){
             $categoryDetails=$this->Category_model->get_details_by_id(base64_decode($idStrArr[0]));
@@ -154,9 +154,8 @@ class Category extends MY_Controller{
             $data['brands'] = $this->display_brands_view($total_rows['brands'],$brnd);
             echo json_encode($data);die;
         endif;
-
-        $data['feedback']=$this->load->view('feedback',$data,TRUE);
-        $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
+        //$data['feedback']=$this->load->view('feedback',$data,TRUE);
+        //$data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
 
         $this->load->view('category_details',$data);
     }

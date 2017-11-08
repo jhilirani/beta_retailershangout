@@ -30,9 +30,9 @@ myJsMain.my_billing_address=function(){
         //$('#LoadingDiv').fadeOut();
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',"Billing address updated successfully.",200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',"Billing address updated successfully.",200);
         }
     }
 };
@@ -65,9 +65,9 @@ myJsMain.my_profile=function(){
         //$('#LoadingDiv').fadeOut();
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',"Profile updated successfully.",200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',"Profile updated successfully.",200);
             check_profile_completion_for_start_order(resultData.profile_common_message);
             if(resultData.redirect==1){
                 location.href=resultData.url;
@@ -107,9 +107,9 @@ myJsMain.my_shipping_address=function(){
         //$('#LoadingDiv').fadeOut();
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',"Shipping address updated successfully.",200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',"Shipping address updated successfully.",200);
             check_profile_completion_for_start_order(resultData.profile_common_message);
             location.href=resultData.url;
         }
@@ -139,9 +139,9 @@ myJsMain.my_finance=function(){
         //$('#fade_background').fadeOut();
         //$('#LoadingDiv').fadeOut();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',"Finance data updated successfully.",200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',"Finance data updated successfully.",200);
         }
     }
 };
@@ -189,12 +189,12 @@ myJsMain.my_create_groups=function(){
         $('#grpButton').prop('disabled',false);
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            //myJsMain.commonFunction.retailershangoutAlert('Tidiit System Message',resultData.msg,200);
             $('div.js-message').html('<div class="alert alert-danger" role="alert">'+resultData.msg+'</div>');
             $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         } else if(resultData.result=='good') {
             $( "#myModalLogin .close" ).trigger( "click" );
-            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',"Buyer club has been added successfully.",200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',"Buyer club has been added successfully.",200);
             check_profile_completion_for_start_order(resultData.profile_common_message);
             window.setTimeout(function(){location.href=resultData.url;},3000);
         }
@@ -205,7 +205,7 @@ myJsMain.my_create_groups=function(){
         $('#grpButton').prop('disabled',false);
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-           // myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+           // myJsMain.commonFunction.retailershangoutAlert('Tidiit System Message',resultData.msg,200);
             $('div.js-message').html('<div class="alert alert-danger" role="alert">'+resultData.msg+'</div>');
             $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         } else if(resultData.result=='good') {
@@ -222,11 +222,11 @@ myJsMain.my_create_groups=function(){
         $('#grpButton').prop('disabled',false);
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result == 'bad'){
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            //myJsMain.commonFunction.retailershangoutAlert('Tidiit System Message',resultData.msg,200);
             $('div.js-message').html('<div class="alert alert-danger" role="alert"><i class="fa fa-exclamation-triangle"></i> '+resultData.msg+'</div>');
             $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         } else if(resultData.result == 'good') {
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',"Group has been updated successfully.",200);
+            //myJsMain.commonFunction.retailershangoutAlert('Tidiit System Message',"Group has been updated successfully.",200);
             $('div.js-message').html('<div class="alert alert-success" role="alert"><i class="fa fa-check"></i> Buyer club has been updated successfully.</div>');
             $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         }
@@ -244,7 +244,7 @@ myJsMain.my_create_groups=function(){
                 success:function(msg){
                     if(msg=="yes"){
                         jQuery('#groupTitle').val('');
-                        myJsMain.commonFunction.tidiitAlert('Retailershangout Hangout System','"'+NowGroupTitleData+'" is already created,So try new one.');
+                        myJsMain.commonFunction.retailershangoutAlert('Retailershangout Hangout System','"'+NowGroupTitleData+'" is already created,So try new one.');
                     }
                 }
             });
@@ -472,6 +472,7 @@ myJsMain.my_checkout_shipping_address=function(){
         
         // this is just to show product list page
     function shippingCheckAddressFormCallback(resultData){
+        //console.log(resultData.result);
         myJsMain.commonFunction.hidePleaseWait();
         $('#shippingCheckoutAddress').prop('disabled',false);
         if(resultData.result=='bad'){
@@ -479,11 +480,12 @@ myJsMain.my_checkout_shipping_address=function(){
             $('div.js-message').html('<div class="alert alert-danger">Shipping address not updated. Please try again!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
         }else if(resultData.result=='good'){
-            $('.js-right-panel').html(resultData.html);
+            //$('.js-right-panel').html(resultData.html);
             $('div.js-message').html('<div class="alert alert-success">Shipping address has been updated successfully. Please continue!</div>');
              $('div.js-message').fadeIn(300,function() { setTimeout( '$("div.js-message").fadeOut(300)', 15000 ); });
              $('.shipping-continue').attr('data-shipping', 'true');
              $('a.js-shipping').attr('data-shipping', 'true');
+             $('.nav-tabs a[href="#checkout"]').trigger( "click" ); 
         }
     }
 };
@@ -528,7 +530,7 @@ jQuery(document).ready(function(){
 
 function check_profile_completion_for_start_order(msg){
     if(msg!=""){
-        myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',msg,200);
+        myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',msg,200);
     }else{
         return false
     }
