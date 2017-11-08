@@ -1221,7 +1221,7 @@ class Shopping extends MY_Controller{
             redirect(BASE_URL.'shopping/my-cart');
         }
         
-        pre("going next at ".time());
+        //pre("going next at ".time());
         
         $user = $this->_get_current_user_details();
         /*$sms_data=array('nMessage'=>'comming to ajax_process_single_payment_start FUN at '.time().' $paymentType '.$paymentType.' at line number 1213',
