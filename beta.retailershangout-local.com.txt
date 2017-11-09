@@ -5,3 +5,25 @@
     ErrorLog "logs/retailershangout-local.com-error.log"
     CustomLog "logs/retailershangout-local.com-access.log" common
 </VirtualHost>
+
+
+
+
+<VirtualHost betaseller.retailershangout-local.com:80>
+    ServerAdmin webmaster@betaselller.retailershangout-local.com
+    DocumentRoot "D:/xampp/htdocs/beta_retailershangout_public_html/betaseller"
+    ServerName betaselller.retailershangout-local.com
+    ErrorLog "logs/selller.retailershangout-local.com-error.log"
+    CustomLog "logs/selller.retailershangout-local.com-access.log" common
+</VirtualHost>
+
+
+
+
+<VirtualHost betaapp.retailershangout-local.com:80>
+    ServerAdmin webmaster@betaapp.retailershangout-local.com
+    DocumentRoot "D:/xampp/htdocs/beta_retailershangout_public_html/betaapp"
+    ServerName betaapp.retailershangout-local.com
+    ErrorLog "logs/app.retailershangout-local.com-error.log"
+    CustomLog "logs/app.retailershangout-local.com-access.log" common
+</VirtualHost>
