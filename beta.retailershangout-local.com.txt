@@ -1,0 +1,7 @@
+<VirtualHost beta.retailershangout-local.com:80>
+    ServerAdmin webmaster@beta.retailershangout-local.com
+    DocumentRoot "D:/xampp/htdocs/beta_retailershangout_public_html/beta"
+    ServerName beta.retailershangout-local.com
+    ErrorLog "logs/retailershangout-local.com-error.log"
+    CustomLog "logs/retailershangout-local.com-access.log" common
+</VirtualHost>
