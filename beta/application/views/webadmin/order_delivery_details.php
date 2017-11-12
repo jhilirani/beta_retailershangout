@@ -214,7 +214,7 @@
                      myJsMain.commonFunction.hideWebAdminPleaseWait();
                      if(data.result=='good'){
                          jqout.html("");
-                         myJsMain.commonFunction.tidiitAlert('Retailershangout Order Update System','Select order update as delivered successfully.',200);
+                         myJsMain.commonFunction.retailershangoutAlert('Retailershangout Order Update System','Select order update as delivered successfully.',200);
                          location.href=myJsMain.baseURL+'order/viewlist';
                      }
                  }, 'json' );

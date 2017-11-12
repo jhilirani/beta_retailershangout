@@ -346,7 +346,7 @@ $(document).ready(function(){
             data:'startWeight='+jQuery(this).val()+'&countryCode='+jQuery('#countryCode').val(),
             success:function(res){ console.log(res);
                 if(res=='exist'){
-                    myJsMain.commonFunction.tidiitAlert('Retailershangout Shipping System','Selected "start weight" is alredy exist, please select a new.',200);
+                    myJsMain.commonFunction.retailershangoutAlert('Retailershangout Shipping System','Selected "start weight" is alredy exist, please select a new.',200);
                     jQuery("#startWeight").val('');
                     jQuery('#EndCostLable').text("");
                 }else{
@@ -364,7 +364,7 @@ $(document).ready(function(){
             data:'startWeight='+jQuery(this).val()+'&countryCode='+jQuery('#countryCode').val()+'&shippingId='+jQuery('#shippingId').val(),
             success:function(res){ console.log(res);
                 if(res=='exist'){
-                    myJsMain.commonFunction.tidiitAlert('Retailershangout Shipping System','Selected "start weight" is alredy exist, please select a new.',200);
+                    myJsMain.commonFunction.retailershangoutAlert('Retailershangout Shipping System','Selected "start weight" is alredy exist, please select a new.',200);
                     jQuery("#EditstartWeight").val('');
                     jQuery('#EditEndCostLable').text("");
                 }else{

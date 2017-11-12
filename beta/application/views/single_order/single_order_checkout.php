@@ -94,8 +94,8 @@
                                     </tr> <!-- /.row -->
 
                                     <tr> <!-- row -->
-                                        <td colspan="3" class="text-right sub-total">Service Tax (<!--15%-->)</td>
-                                        <td class="sub-total"><?php echo $currencySymbol;?> <?= number_format(round($tax,0,PHP_ROUND_HALF_UP),2)?><</td>
+                                        <td colspan="3" class="text-right sub-total">GST<!--Service Tax (15%)--></td>
+                                        <td class="sub-total"><?php echo $currencySymbol;?> <?= number_format(round($tax,0,PHP_ROUND_HALF_UP),2)?></td>
                                         <td>&nbsp;</td>
                                     </tr> <!-- /.row -->
 

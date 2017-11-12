@@ -60,15 +60,25 @@
                             foreach($DataArr AS $k){?>  
                         <tr>
                           <td><input type="checkbox" name="sel_pro"></td>
-                          <td><a href="<?php echo BASE_URL.'product/edit_product/'.$k->productId*999999;?>">Edit</a> / 
+                          <td>
+                              <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                  Manage this item
+                                  <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Edit</a></li>
+                                <li><a href="#">Delete</a></li>
+                                <li><a href="#">Make Active</a></li>
+                              </ul>-->
+                              <a href="<?php echo BASE_URL.'product/edit_product/'.$k->productId*999999;?>">Edit</a> / 
                               <a href="javascript:void(0);" class="deleteProduct"  title="Delete" data-productid="<?php echo $k->productId;?>">Delete</a> / 
                               <?php if($k->status==1){$action="Inactivate";}else{$action="Activate";}?>
-                              <a href="javascript:void(0);" class="changeProductStatus"  title="Delete" data-productid="<?php echo $k->productId;?>" data-productstatus="<?php echo $k->status;?>">Make <?php echo $action;?></a>
+                              <a href="javascript:void(0);" class="changeProductStatus"  title="Delete" data-productid="<?php echo $k->productId;?>" data-productstatus="<?php echo $k->status;?>">Make <?php echo $action;?></a> 
                           </td>
                           <td><?php echo ($k->status==0) ?'Inactive' : 'Active';?></td>
                           <td><img src="<?php echo SiteResourcesURL.'product/100X100/'.$k->image;?>" alt="<?php echo $k->title;?>"></td>
                           <td><?php echo $k->model;?></td>
-                          <td><?php echo $k->title;?></td>
+                          <td><?php echo $k->title;?> llllll</td>
                           <td><?php 
                           if($k->qty>$k->minQty):
                               echo $k->qty; 

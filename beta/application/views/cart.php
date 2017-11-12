@@ -84,7 +84,7 @@
                                 </tr> <!-- /.row -->
 
                                 <tr> <!-- row -->
-                                    <td colspan="3" class="text-right sub-total">Service Tax (15%)</td>
+                                    <td colspan="3" class="text-right sub-total">GST</td>
                                     <td class="sub-total"><?php echo $currencySymbol;?> <?= number_format($tax) ?>.00</td>
                                     <td>&nbsp;</td>
                                 </tr> <!-- /.row -->
@@ -159,14 +159,14 @@
                         endforeach; ?>
                                 </tbody>
                                 <tfoot>
-                                <tr> <!-- row -->
+                                <!--<tr> <!-- row >
                                     <td colspan="3" class="text-right sub-total">Sub Total</td>
                                     <td class="sub-total"><i class="fa fa-inr"></i> 3000</td>
                                     <td>&nbsp;</td>
                                 </tr> <!-- /.row -->
 
                                 <tr> <!-- row -->
-                                    <td colspan="3" class="text-right sub-total">Service Tax (15%)</td>
+                                    <td colspan="3" class="text-right sub-total">GST</td>
                                     <td class="sub-total"><?php echo $currencySymbol;?> <?= number_format($tax) ?></td>
                                     <td>&nbsp;</td>
                                 </tr> <!-- /.row -->

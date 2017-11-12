@@ -137,7 +137,7 @@ TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_
                         <li><img src="<?php echo SiteImagesURL; ?>master-card-verified.png"/></li>
                         <li><img src="<?php echo SiteImagesURL; ?>godaddy-verified.png" /></li>
                         <li><img src="<?php echo SiteImagesURL; ?>visa-verified.png" /></li>
-                        <li><img src="_/img/payments/x5.png" alt=""></li>
+                        <li><img src="<?php echo SiteImagesURL; ?>payments/x5.png" alt=""></li>
                     </ul>
                 </div>
                 <!-- /.payment-methods -->

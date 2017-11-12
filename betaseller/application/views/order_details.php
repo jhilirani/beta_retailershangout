@@ -1,4 +1,5 @@
-<?php $orderinfo = unserialize(base64_decode($order->orderInfo));?>
+<?php $orderinfo = unserialize(base64_decode($order->orderInfo));
+//pre($orderinfo);?>
 <!-- Modal -->
 <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
@@ -133,7 +134,7 @@
                                             </tr>
                                             <tr> 
                                                 <td colspan="5"></td>
-                                                <td>Tax</td>
+                                                <td>GST</td>
                                                 <td><i class="fa fa-rupee"></i><?=isset($order->taxAmount)?$order->taxAmount:''?></td>
                                             </tr>
                                             <tr> 
@@ -144,7 +145,10 @@
                                             <tr> 
                                                 <td colspan="5"></td>
                                                 <td>Paid</td>
-                                                <td><i class="fa fa-rupee"></i><?=isset($order->subTotalAmount)?$order->subTotalAmount:''?></td>
+                                                <td> <?php if($order->isPaid==0){ echo 'Not Paid';}else{?>
+                                                    <i class="fa fa-rupee"></i><?php echo isset($order->orderAmount)?$order->orderAmount:'';
+                                                }?>
+                                                </td>
                                             </tr>
                                         </table>  
 

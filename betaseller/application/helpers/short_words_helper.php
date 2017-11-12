@@ -495,3 +495,9 @@ if( !function_exists('common_maintain_action_log')){
         }
     }
 }
+
+if(!function_exists('sortingProductPriceArr')){
+    function sortingProductPriceArr($a, $b) {
+        return $a['qty'] - $b['qty'];
+    }
+}

@@ -52,14 +52,24 @@ class Shopping extends MY_Controller{
         $orderinfo['priceinfo'] = $prod_price_info;
         $productImageArr = $this->Product_model->get_products_images($productId);
         $orderinfo['pimage'] = $productImageArr[0];
-
-        $country_name = $this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
-        $taxDetails = $this->Product_model->get_tax_for_current_location($productId, $country_name.'_tax');
-        $taxCol = $country_name.'_tax';
-        $taxPercentage = $taxDetails->$taxCol;
+        
         $orderAmountBeforeTax = $prod_price_info->price;
-        $cTax = ($orderAmountBeforeTax*$taxPercentage)/100;
+        
+        if(!isset($data['orderId'])):
+            /* bellow tax caluculation code commnet as it was location base fix code. wise 
+             * $country_name = $this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
+            $taxDetails = $this->Product_model->get_tax_for_current_location($productId, $country_name.'_tax');
+            $taxCol = $country_name.'_tax';
+            $taxPercentage = $taxDetails->$taxCol;
+            
+            $cTax = ($orderAmountBeforeTax*$taxPercentage)/100;*/
+            $cTax=0;
+        else:
+            
+        endif;
+        
         $orderAmount = $orderAmountBeforeTax+$cTax;
+        
         //$orderDataArr=array('taxAmount'=>$cTax,'discountAmount'=>$data['couponAmount'],'orderAmount'=>$orderAmount);
 
 
@@ -195,13 +205,17 @@ class Shopping extends MY_Controller{
         $price = number_format($single_price, 2, '.', '');
         $totalprice = number_format($price*$qty, 2, '.', '');
 
-
-        $country_name = $this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
+        /**** bellow code done for country wise so now stop thing this code
+        /**$country_name = $this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
         $taxDetails = $this->Product_model->get_tax_for_current_location($order->productId, $country_name.'_tax');
         $taxCol = $country_name.'_tax';
         $taxPercentage = $taxDetails->$taxCol;
+        
+        $cTax = ($orderAmountBeforeTax*$taxPercentage)/100;*/
         $orderAmountBeforeTax = $totalprice;
-        $cTax = ($orderAmountBeforeTax*$taxPercentage)/100;
+        // bellow tax calculate for GST
+        $single_tax=($prod_price_info->gstTax/$prod_price_info->qty);
+        $cTax=number_format($single_tax*$qty, 2, '.', '');
         $orderAmount = $orderAmountBeforeTax+$cTax;
 
         $order_update = [];
@@ -1004,12 +1018,17 @@ class Shopping extends MY_Controller{
         $product = $product[0];
         $prod_price_info = $this->Product_model->get_products_price_details_by_id($productPriceId);
         //$is_cart_update = false;
+        /***
+         * comment bellow code as it global location wise and category wise tax callculation
         $countryShortName=$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
         $currentLocationTaxDetails=$this->Product_model->get_tax_for_current_location($productId,$countryShortName.'_tax');
         $taxCol=$countryShortName.'_tax';
         $taxPercentage=$currentLocationTaxDetails->$taxCol;
         $tax=$prod_price_info->price*$taxPercentage/100;
-
+        */
+        /// now it is for GST
+        $tax=$prod_price_info->gstTax;
+        
         $order_data = array();
         $order_data['orderType'] = 'SINGLE';
         $order_data['productId'] = $productId;
@@ -1170,11 +1189,13 @@ class Shopping extends MY_Controller{
             $countryShortName=$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
             foreach($allItemArr AS $k){
                 if($k['orderId']==$orderId){
-                    $currentLocationTaxDetails=$this->Product_model->get_tax_for_current_location($k['productId'],$countryShortName.'_tax');
+                    /*$currentLocationTaxDetails=$this->Product_model->get_tax_for_current_location($k['productId'],$countryShortName.'_tax');
                     $taxCol=$countryShortName.'_tax';
                     $taxPercentage=$currentLocationTaxDetails->$taxCol;
-                    $orderAmountBeforeTax=$k['subTotalAmount']-$data['couponAmount'];
                     $cTax=$orderAmountBeforeTax*$taxPercentage/100;
+                    */
+                    $orderAmountBeforeTax=$k['subTotalAmount']-$data['couponAmount'];
+                    $cTax=$k['taxAmount'];
                     $orderAmount=$orderAmountBeforeTax+$cTax;
                     $orderDataArr=array('taxAmount'=>$cTax,'discountAmount'=>$data['couponAmount'],'orderAmount'=>$orderAmount);
                     $this->Order_model->update($orderDataArr,$k['orderId']);
@@ -2783,12 +2804,16 @@ class Shopping extends MY_Controller{
     function ajax_single_order_remove_promo(){
         $orderId=$this->input->post('orderId',TRUE);
         $orderDetails=$this->Order_model->details($orderId);
-        $countryShortName=$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
+        /*
+         * Remove this code as it is location and category base tax
+         * $countryShortName=$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
         $fieldName=$countryShortName.'_tax';
         $currentLocationTaxDetails=$this->Product_model->get_tax_for_current_location($orderDetails[0]->productId,$countryShortName.'_tax');
         $taxCol=$countryShortName.'_tax';
         $taxPercentage=$currentLocationTaxDetails->$taxCol;
-        $tax=$orderDetails[0]->subTotalAmount*$taxPercentage/100;
+        $tax=$orderDetails[0]->subTotalAmount*$taxPercentage/100;*/
+        ///// add this as GST
+        $tax=$orderDetails[0]->taxAmount;
 
         $orderDataArr=array();
         $orderDataArr['taxAmount'] = $tax;

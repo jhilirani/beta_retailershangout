@@ -302,6 +302,16 @@ $priceRangeSettingsDataArr = $priceRangeSettingsArr[$productPageType];
                                                                         placeholder="Price" value="" name="price"
                                                                         style="width:auto;"></div>
                                                             </div>
+                                                            <div class="col-sm-12" style="padding:0;height: 5px;"></div>
+                                                            <div class="col-sm-12 form-group field required field"
+                                                                 style="padding:0;">
+                                                                <div class="col-sm-6" style="padding:0;"><label
+                                                                        for="gstTax">GST Charges</label></div>
+                                                                <div class="col-sm-6" style="padding:0;"><input
+                                                                        type="text" class="form-control" id="gstTax"
+                                                                        placeholder="GST value" value="" name="gstTax"
+                                                                        style="width:auto;"></div>
+                                                            </div>
                                                         </div>
                                                         <div class="col-sm-12 more_price_quantity_for_product"
                                                              style="padding:0;"></div>
@@ -686,6 +696,15 @@ $priceRangeSettingsDataArr = $priceRangeSettingsArr[$productPageType];
         tabRow += '</div>';
 
         tabRow += '<div class="col-sm-12"  style="padding:0;height: 5px;"></div>';
+        tabRow += '<div class="col-sm-12" style="padding:0;">';
+        tabRow += '<div class="col-sm-12" style="padding:0;">';
+        tabRow += '<div class="col-sm-6" style="padding:0;"><label for="gstTax_' + price_row + '">GST Charges ' + price_row + '</label></div>';
+        tabRow += '<div class="col-sm-3" style="padding:0;"><input type="text" class="form-control required" id="gstTax_' + price_row + '" placeholder="Price" value="" name="gstTax_' + price_row + '"  style="width:auto;"></div>';
+        tabRow += '</div>';
+        tabRow += '</div>';
+        
+        tabRow += '<div class="col-sm-12"  style="padding:0;height: 5px;"></div>';
+        
         tabRow += '<div class="col-sm-12" style="padding:0;">';
         tabRow += '<div class="col-sm-6" style="padding:0;"><label for="price_' + price_row + '">Price ' + price_row + '</label></div>';
         tabRow += '<div class="col-sm-3" style="padding:0;"><input type="text" class="form-control required" id="price_' + price_row + '" placeholder="Price" value="" name="price_' + price_row + '"  style="width:auto;"></div>';

@@ -23,12 +23,12 @@ $orderinfo = unserialize(base64_decode($order->orderInfo));
                 <strong>Land mark :</strong><?=$orderinfo['shipping']->landmark?>
             </td>
             <td style="width:40%; vertical-align:top;" class="packing">
-                <img src="<?=$this->config->item('main_site')?>resources/qr_code/<?=$order->qrCodeImageFile?>">
+                <img src="<?php echo MainSiteURL.'resources/qr_code/'.$order->qrCodeImageFile;?>">
             <br/>
             </td>
         </tr>
 
-        <tr>
+        <?php /*<tr>
             <td style="border-top:1px solid #000;">
                 <strong>Payment Method</strong>
                 <div><?=$order->paymentType?> Payment</div>
@@ -37,7 +37,7 @@ $orderinfo = unserialize(base64_decode($order->orderInfo));
                 <strong>Shipping</strong>
                 <div>Flat Rate</div>
             </td>
-        </tr>
+        </tr>*/?>
 
         <tr>
             <td style="border-top:1px solid #000;">

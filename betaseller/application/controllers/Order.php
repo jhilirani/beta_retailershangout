@@ -1,4 +1,13 @@
 <?php
+require_once APPPATH.'third_party/dompdf/lib/html5lib/Parser.php';
+require_once APPPATH.'third_party/dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once APPPATH.'third_party/dompdf/lib/php-svg-lib/src/autoload.php';
+require_once APPPATH.'third_party/dompdf/src/Autoloader.php';
+Dompdf\Autoloader::register();
+
+// reference the Dompdf namespace
+use Dompdf\Dompdf;
+
 class Order extends MY_Controller{
 	public function __construct(){
             parent::__construct();
@@ -392,16 +401,34 @@ class Order extends MY_Controller{
 
     public function order_invoice($orderNumber){
         $this->load->model('Siteconfig_model');
-        $this->load->helper(array('dompdf', 'file'));
+        //$this->load->helper(array('dompdf', 'file'));
+        //$this->load->helper(array('file'));
         $config =$this->Siteconfig_model->get_all();
         $cdata = [];
         foreach($config as $key => $cval):
             $cdata[$cval->constantName] = $cval->constantValue;
         endforeach;
         $data['config']=$cdata;
+        //pre($data);
         $data['order'] = $this->Order_model->get_single_order_by_id($orderNumber);
         //ob_start();
         $html = $this->load->view('order_invoice', $data, true);
-        pdf_create($html, 'TIDIIT-OD-'.$orderNumber);
+        //echo $html;die;
+        //pdf_create($html, 'TIDIIT-OD-'.$orderNumber);
+        //$this->load->library('pdfgenerator');
+        //$this->pdfgenerator->generate($html, 'TIDIIT-OD-'.$orderNumber, FALSE, 'A4', 'portrait');
+        
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('TIDIIT-OD-'.$orderNumber.'.pdf');
     }
 }

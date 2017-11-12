@@ -19,14 +19,14 @@ $disc = isset($order->discountAmount)?$order->discountAmount:0;
         <tbody>
         <tr>
             <td style="width: 20%;">
-                <img src="resources/images/logo.png" alt="">
+                <img src="<?php echo ResourcesPath;?>images/logo.png" alt="" height="100px">
             </td>
             <td style="width: 80%;">
                 <table border="0" style="width:100%;" cellpadding="5" cellspacing="5">
                     <tbody>
                     <tr>
                         <td style="width: 50%;">
-                            <p style="float: left;font-size: 8px;">Contact us: <?=$config['customercontactnumber']?> || <?=$config['CustomerCareEmail']?></p>
+                            <p style="float: left;font-size: 8px;">Contact us: <?=$config['CALL_US_FOR_FREE_IN']?> || <?=$config['CustomerCareEmail']?></p>
                         </td>
                         <td style="width: 50%;">
                             <p style="float: right; border: 1px dashed #000;width:170px;font-size: 10px;margin: 3px;">Tax Invoice # <?=$ws['taxInvoice']?></p>
@@ -46,17 +46,13 @@ $disc = isset($order->discountAmount)?$order->discountAmount:0;
         </tbody>
     </table>
 
-
-
-
     <table style="border:1px solid #000; width:100%; font-size:13px;" cellpadding="5" cellspacing="0">
         <tr>
             <td style="width:40%; vertical-align:middle; line-height: 17px; text-align: left;">
                 <strong>Order ID: </strong>RH-OD-<?php echo $order->orderId;?><br>
                 <strong>Order Date: </strong><?php echo date("Y-m-d", strtotime($order->orderDate));?><br>
                 <strong>Invoice Date: </strong><?php echo date("Y-m-d", strtotime($order->orderDate));?><br>
-                <strong>VAT/TIN: </strong><?=$ws['vatNumber']?><br>
-                <strong>Service tax #: </strong><?=$config['servicetax']?><br>
+                <strong>GST: </strong><?=$ws['vatNumber']?><br>
             </td>
             <td style="width:40%; vertical-align:top;">
                 <strong>Shipping Address</strong><br/>
@@ -119,10 +115,10 @@ $disc = isset($order->discountAmount)?$order->discountAmount:0;
     </table>
 
 
-    <table border="0" style="width:100%; margin-top:10px; font-size:13px; border-collapse:collapse;margin-top: 200px;" cellpadding="5" cellspacing="0">
+    <table border="0" style="width:100%; margin-top:10px; font-size:13px; border-collapse:collapse;margin-top: 20px;" cellpadding="5" cellspacing="0">
         <tbody>
         <tr>
-            <td align="right"><img src="resources/images/logo.png" alt="" style="width: 65px;"><br>
+            <td align="right"><img src="<?php echo ResourcesPath;?>images/logo.png" alt="" style="width: 65px;"><br>
             <p style="font-size: 16px;">Thank You!<br><span style="font-size: 11px;">for shopping with us</span></p></td>
         </tr>
         </tbody>

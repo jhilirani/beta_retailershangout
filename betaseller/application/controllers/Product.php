@@ -419,8 +419,8 @@ class Product extends MY_Controller{
                     }
                     $priceArr[]=array('qty'=>$bulkQty,'price'=>$price);
                 }
-                usort($priceArr, 'sortingProductPriceArr');
-                //pre($priceArr);die;
+                $priceArr=usort($priceArr, 'sortingProductPriceArr');
+                pre($priceArr);die;
                 $newPriceArr=array();
                 foreach ($priceArr AS $k):
                     $k['productId']=$productId;
@@ -889,9 +889,8 @@ class Product extends MY_Controller{
             $weightClass=$this->input->post('weightClass',TRUE);
             $bulkQty=$this->input->post('bulkQty',TRUE);
             $price=$this->input->post('price',TRUE);
+            $gstTax=$this->input->post('gstTax',TRUE);
             $total_price_row_added=$this->input->post('total_price_row_added',TRUE);
-
-
 
             $status=$this->input->post('status',TRUE);
             $this->form_validation->set_rules($config);
@@ -905,10 +904,13 @@ class Product extends MY_Controller{
             }else{
                 $priceArr=array();
                 $lowestPrice=$price;
-                $priceArr[]=array('qty'=>$bulkQty,'price'=>$price);
+                $lowestGstTax_=$gstTax;
+                $priceArr[]=array('qty'=>$bulkQty,'price'=>$price,'gstTax'=>$gstTax);
+                //$priceArr[]=array('qty'=>25,'price'=>15000,'gstTax'=>3000);
                 for($i=1;$i<$total_price_row_added;$i++){
                     $bulkQty=$this->input->post('bulkQty_'.$i,TRUE);
                     $price=$this->input->post('price_'.$i,TRUE);
+                    $gstTax=$this->input->post('gstTax_'.$i,TRUE);
 
                     if($bulkQty=="" || $price==""){
                         //echo '$bulkQty= '.$bulkQty.'  === $price '.$price;die;
@@ -919,9 +921,10 @@ class Product extends MY_Controller{
                     //$tidiitCommissions=  $this->get_tidiit_commission($productId);
                     //$fPrice=$price+($bulkQty*$shippingPrice)+$tidiitCommissions;
                     //$priceArr[]=array('qty'=>$bulkQty,'price'=>$fPrice,'shippingCharges'=>($bulkQty*$shippingPrice),'tidiitCommissions'=>$tidiitCommissions);
-                    $priceArr[]=array('qty'=>$bulkQty,'price'=>$price);
+                    $priceArr[]=array('qty'=>$bulkQty,'price'=>$price,'gstTax'=>$gstTax);
                 }
-                usort($priceArr, 'sortingProductPriceArr');
+                
+                $tempArr=usort($priceArr, 'sortingProductPriceArr');
                 $heighestPrice=$price;
                 $minQty=$priceArr[count($priceArr)-1]['qty'];
                 //$dataArr=$retDataArr['data'];

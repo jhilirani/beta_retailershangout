@@ -76,7 +76,7 @@
                         </tr> <!-- /.row -->
 
                         <tr> <!-- row -->
-                            <td colspan="3" class="text-right sub-total">Service Tax (15%)</td>
+                            <td colspan="3" class="text-right sub-total"><!--Service Tax (15%)-->GST</td>
                             <td class="sub-total"><?php echo $currencySymbol;?> <?=number_format($tax)?></td>
                             <td>&nbsp;</td>
                         </tr> <!-- /.row -->
@@ -150,7 +150,7 @@
                         </tr> <!-- /.row -->
 
                         <tr> <!-- row -->
-                            <td colspan="3" class="text-right sub-total">Service Tax (15%)</td>
+                            <td colspan="3" class="text-right sub-total">GST<!--Service Tax (15%)--></td>
                             <td class="sub-total"><?php echo $currencySymbol;?> <?=number_format($tax)?></td>
                             <td>&nbsp;</td>
                         </tr> <!-- /.row -->

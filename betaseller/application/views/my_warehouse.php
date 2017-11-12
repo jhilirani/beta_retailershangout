@@ -28,7 +28,7 @@
                                       <button type="button" data-id="<?=$wh->id?>" class="btn btn-danger btn-xs delete-warehouse"><i class="fa fa-times" aria-hidden="true" alt="delete" title="delete"></i></button><br>
                                       <strong>Tax Invoice</strong><br>
                                       <a href="mailto:#"><?=$wh->taxInvoice?></a><br>
-                                      <strong>VAT Number</strong><br>
+                                      <strong>GST Number</strong><br>
                                       <a href="mailto:#"><?=$wh->vatNumber?></a><br>
                                   </p>
                               </div>
@@ -64,7 +64,7 @@
                             <td class="text-left">Tax Invoice</td>
                             <td class="text-left"><input type="text" name="taxInvoice" id="taxInvoice" placeholder="" value="" class="form-control required"></td>
                             <td class="text-left">&nbsp;</td>
-                            <td class="text-left">VAT Number</td>
+                            <td class="text-left">GST Number</td>
                             <td class="text-left"><input type="text" name="vatNumber" id="vatNumber" placeholder="" value="" class="form-control required"></td>
                         </tr>
                         <tr>
