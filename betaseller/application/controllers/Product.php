@@ -951,6 +951,7 @@ class Product extends MY_Controller{
                 $tag=$retDataArr['data']['tag'];
                 unset($retDataArr['data']['tag']);
                 $mobileDataArr=array_merge($retDataArr['data'],$dataArr);
+            
                 //pre($mobileDataArr);die;
                 //echo base64_encode(serialize($mobileDataArr));die;
                 //pre($priceArr);die;
@@ -992,52 +993,54 @@ class Product extends MY_Controller{
                             $blank++;
                     }
                 }
-            }
-            //die($blank.' = rrr');
-            //if($blank==1 || $blank==2){
-            if($blank==1){
-                @unlink($this->config->item('ResourcesPath').'product/original/'.$upload_files[0]);
-                $this->session->set_flashdata('Message','Please upload at least two image for this product.');
-                redirect(BASE_URL.'product/add_product/'.$categoryId);
-            }
-            //pre($upload_files);die;
-
-            $productId=$this->Product_model->add($mobileDataArr);
-            //$productId=1;
-            //echo 'product added done.<br>';
-            $imageBatchArr=array();
-            foreach ($upload_files AS $k =>$v){
-                $imageBatchArr[]=array('productId'=>$productId,'image'=>$v);
-            }
-            $this->Product_model->add_image($imageBatchArr);
-            //echo 'image uploaded done.<br>';
-
-            $newPriceArr=array();
-            foreach ($priceArr AS $k){
-                $k['productId']=$productId;
-                $newPriceArr[]=$k;
-            }
-
-            //pre($newPriceArr);die;
-            $this->Product_model->add_product_price($newPriceArr);
-            //echo 'price added done.<br>';
-
-            $this->Product_model->add_product_category(array('productId'=>$productId,'categoryId'=>$categoryId));
             
-            //echo 'product category done.<br>';
-            $this->Product_model->add_product_owner(array('productId'=>$productId,'userId'=>$this->session->userdata('FE_SESSION_VAR')));
-            $this->User_model->add_tidiit_commission(array('productId'=>$productId,'sellerId'=>$this->session->userdata('FE_SESSION_VAR'),'categoryId'=>$categoryId));
-            $this->Product_model->add_brand(array('productId'=>$productId,'brandId'=>$brandId));
+                //die($blank.' = rrr');
+                //if($blank==1 || $blank==2){
+                if($blank==1){
+                    @unlink($this->config->item('ResourcesPath').'product/original/'.$upload_files[0]);
+                    $this->session->set_flashdata('Message','Please upload at least two image for this product.');
+                    redirect(BASE_URL.'product/add_product/'.$categoryId);
+                }
+                //pre($upload_files);die;
+                $this->Option_model->saveOptionsValues( $this->input->post('options',TRUE)?$this->input->post('options',TRUE):[],5 );
+                //die;
+                $productId=$this->Product_model->add($mobileDataArr);
+                //$productId=1;
+                //echo 'product added done.<br>';
+                $imageBatchArr=array();
+                foreach ($upload_files AS $k =>$v){
+                    $imageBatchArr[]=array('productId'=>$productId,'image'=>$v);
+                }
+                $this->Product_model->add_image($imageBatchArr);
+                //echo 'image uploaded done.<br>';
 
-            //Add product option values
-            $this->Option_model->saveOptionsValues( $this->input->post('options',TRUE)?$this->input->post('options',TRUE):[], $productId );
-            
-            $productTagArr=array('productId'=>$productId,'tagStr'=>$tag);
-            $this->Product_model->add_product_tag($productTagArr);
-            //echo 'tag added done.<br>';
-            
-            $this->session->set_flashdata('Message','Product added successfully.');
-            redirect(base_url().'product/viewlist');
+                $newPriceArr=array();
+                foreach ($priceArr AS $k){
+                    $k['productId']=$productId;
+                    $newPriceArr[]=$k;
+                }
+
+                //pre($newPriceArr);die;
+                $this->Product_model->add_product_price($newPriceArr);
+                //echo 'price added done.<br>';
+
+                $this->Product_model->add_product_category(array('productId'=>$productId,'categoryId'=>$categoryId));
+
+                //echo 'product category done.<br>';
+                $this->Product_model->add_product_owner(array('productId'=>$productId,'userId'=>$this->session->userdata('FE_SESSION_VAR')));
+                $this->User_model->add_tidiit_commission(array('productId'=>$productId,'sellerId'=>$this->session->userdata('FE_SESSION_VAR'),'categoryId'=>$categoryId));
+                $this->Product_model->add_brand(array('productId'=>$productId,'brandId'=>$brandId));
+
+                //Add product option values
+                $this->Option_model->saveOptionsValues( $this->input->post('options',TRUE)?$this->input->post('options',TRUE):[], $productId );
+
+                $productTagArr=array('productId'=>$productId,'tagStr'=>$tag);
+                $this->Product_model->add_product_tag($productTagArr);
+                //echo 'tag added done.<br>';
+
+                $this->session->set_flashdata('Message','Product added successfully.');
+                redirect(base_url().'product/viewlist');
+            }
         }
     }
 

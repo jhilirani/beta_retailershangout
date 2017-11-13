@@ -42,11 +42,12 @@ class Product_model extends CI_Model {
             
             //echo 'PerPage '.$PerPage.'   $PageNo  '.$PageNo;die;
 		//$sql="SELECT p.*,pi.Image,co.CountryName,c.CategoryName FROM `product` as p JOIN `product_image` as pi ON(p.productId=pi.productId) JOIN `product_country` AS pc ON(p.productId=pc.productId) JOIN `category` AS c ON(p.categoryId=c.categoryId) LEFT JOIN `country` AS co ON(pc.CountryID=co.CountryID)  WHERE p.Status < 2 AND c.Status='1' ORDER BY p.productId DESC";
-                $this->db->select('p.*,pi.image,c.categoryName')->from('product p');
+                $this->db->select('p.*,pi.image,c.categoryName,pov.value AS ProductModel')->from('product p');
                 $this->db->join('product_image pi','p.productId=pi.productId');
                 $this->db->join('product_seller ps','p.productId=ps.productId');
                 $this->db->join('product_category pc','pc.productId=p.productId');
                 $this->db->join('category c','pc.categoryId=c.categoryId', 'LEFT');
+                $this->db->join('product_option_values pov','pov.productId=p.productId AND pov.option_id=13', 'LEFT');
                 //$this->db->where('c.status','1');
                 $this->db->where('ps.userId',$userId);
                 
@@ -724,10 +725,11 @@ class Product_model extends CI_Model {
         $this->db->join('product_image pi','p.productId=pi.productId');
         $this->db->join('product_seller ps','p.productId=ps.productId');
         $this->db->join('user u','ps.userId=u.userId');
-        $this->db->join('billing_address ba','ba.userId=u.userId');
-        $this->db->join('country co','co.countryId=ba.countryId');
         $this->db->join('product_category pc','pc.productId=p.productId');
         $this->db->join('category c','pc.categoryId=c.categoryId', 'LEFT');
+        $this->db->join('billing_address ba','ba.userId=u.userId','LEFT');
+        $this->db->join('country co','co.countryId=ba.countryId','LEFT');
+        
         //$this->db->where('c.status','1');
 
         if($FilterProductStatus==""){
@@ -795,10 +797,11 @@ class Product_model extends CI_Model {
         $this->db->join('product_image pi','p.productId=pi.productId');
         $this->db->join('product_seller ps','p.productId=ps.productId');
         $this->db->join('user u','ps.userId=u.userId');
-        $this->db->join('billing_address ba','ba.userId=u.userId');
-        $this->db->join('country co','co.countryId=ba.countryId');
         $this->db->join('product_category pc','pc.productId=p.productId');
         $this->db->join('category c','pc.categoryId=c.categoryId', 'LEFT');
+        $this->db->join('billing_address ba','ba.userId=u.userId','LEFT');
+        $this->db->join('country co','co.countryId=ba.countryId','LEFT');
+        
         //$this->db->where('c.status','1');
 
         if($FilterProductStatus==""){

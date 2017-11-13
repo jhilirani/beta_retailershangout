@@ -77,8 +77,8 @@
                           </td>
                           <td><?php echo ($k->status==0) ?'Inactive' : 'Active';?></td>
                           <td><img src="<?php echo SiteResourcesURL.'product/100X100/'.$k->image;?>" alt="<?php echo $k->title;?>"></td>
-                          <td><?php echo $k->model;?></td>
-                          <td><?php echo $k->title;?> llllll</td>
+                          <td><?php echo $k->ProductModel;?></td>
+                          <td><?php echo $k->title;?></td>
                           <td><?php 
                           if($k->qty>$k->minQty):
                               echo $k->qty; 
