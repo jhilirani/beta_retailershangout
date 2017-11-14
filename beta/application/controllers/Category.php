@@ -54,7 +54,7 @@ class Category extends MY_Controller{
         else:
             $data=$this->_get_tobe_login_template($SEODataArr);
         endif;
-
+        //pre($data);die;
         if(!isset($_GET['cpid']) || !$_GET['cpid']):
             $this->session->set_flashdata('error', 'Invalid location. Please click proper category link!');
             redirect(BASE_URL.'products/ord-message');
@@ -156,7 +156,8 @@ class Category extends MY_Controller{
         endif;
         //$data['feedback']=$this->load->view('feedback',$data,TRUE);
         //$data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
-
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        //pre($data);die;
         $this->load->view('category_details',$data);
     }
     
@@ -400,7 +401,8 @@ class Category extends MY_Controller{
 
         $data['feedback']=$this->load->view('feedback',$data,TRUE);
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
-
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        //pre($data);die;
         $this->load->view('brand_product_listings',$data);
     }
 
@@ -526,7 +528,8 @@ class Category extends MY_Controller{
 
         $data['feedback']=$this->load->view('feedback',$data,TRUE);
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
-
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        
         $this->load->view('search_products_listing',$data);
     }
 }

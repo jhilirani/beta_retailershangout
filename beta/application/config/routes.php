@@ -119,6 +119,7 @@ $route['logistics/out-for-delivery']="index/out_for_delivery_update/";
 $route['logistics/delivery']="index/delivery_update/";
 $route['help']='index/help';
 $route['customer-service']='index/help';
+$route['new-arrivals']="index/new_arrivals_category_wise";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

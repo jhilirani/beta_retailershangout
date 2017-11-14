@@ -208,7 +208,8 @@ class Index extends MY_Controller{
         
         $data['feedback']=$this->load->view('feedback',$data,TRUE);
         $data['common_how_it_works']=$this->load->view('common_how_it_works',$data,TRUE);
-        
+        $data['main_category_menu']=$this->load->view('category_menu',$data,TRUE);
+        //pre($data);die;
         $this->load->view('brand_zone',$data);
     }
     
@@ -288,5 +289,9 @@ class Index extends MY_Controller{
         $data['MainSiteImagesURL']=$this->config->item('SiteImagesURL');
         $data['SiteProductImageURL']=PRODUCT_DEAILS_SMALL;
         $this->load->view('under_construction1',$data);
+    }
+
+    function new_arrivals_category_wise(){
+        $this->show_under_construction1();
     }
 }
